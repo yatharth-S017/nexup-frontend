@@ -1,0 +1,90 @@
+.public-auth{--lime:#a8dd4a;--lime-light:#c5ee7d;--lime-tint:rgba(168,221,74,.12);--lime-dark:#b9eb63;--lime-mid:#8fbe3c;--ink:#f3f6f1;--muted:#a7b0aa;--surface:#0b1110;--white:#111918;--border:rgba(202,225,150,.19);min-height:100vh;background:#070c0b;color:#f3f6f1}.public-auth .bg-wrap{background:radial-gradient(circle at 85% 10%,rgba(168,221,74,.10),transparent 30%),radial-gradient(circle at 10% 90%,rgba(120,154,49,.09),transparent 32%),#070c0b}.public-auth .bg-blob{opacity:.42}.public-auth .form-card{background:rgba(15,23,21,.88);border-color:rgba(202,225,150,.20);box-shadow:0 22px 55px rgba(0,0,0,.35)}.public-auth .form-card::before{background:#a8dd4a}.public-auth .f-input,.public-auth .f-textarea,.public-auth .f-select{background:#090e0e;border-color:rgba(202,225,150,.22);color:#f3f6f1}.public-auth .f-input::placeholder{color:#68736c}.public-auth .f-input:focus,.public-auth .f-textarea:focus,.public-auth .f-select:focus{border-color:#a8dd4a;box-shadow:0 0 0 3px rgba(168,221,74,.12)}.public-auth .btn-send{background:#a8dd4a;color:#0b100b}.public-auth .btn-send:hover{background:#b9eb63}.public-auth .form-label{color:#e7ede7}.public-auth [style*="background: var(--white)"]{background:#0c1312!important}.public-auth [style*="background: '#f3f4f6'"]{background:#18201b!important}.public-auth [style*="color: 'var(--ink)'"]{color:#f3f6f1!important}
+.public-landing{--lime:#a8dd4a;--lime-light:#c5ee7d;--lime-tint:rgba(168,221,74,.10);--lime-dark:#b9eb63;--lime-mid:#8fbe3c;--ink:#f3f6f1;--ink2:#111918;--muted:#a7b0aa;--surface:#0b1110;--white:#070c0b;--border:rgba(202,225,150,.17);color:#f3f6f1;background:#070c0b}.public-landing nav{background:rgba(7,12,11,.86);border-color:rgba(202,225,150,.16)}.public-landing .nav-logo,.public-landing .nav-links a{color:#edf2ec}.public-landing .nav-links a:hover{color:#a8dd4a}.public-landing .hero,.public-landing .problem-section,.public-landing .how-section{background:#070c0b}.public-landing .solve-section{background:#0b1110}.public-landing .solve-card,.public-landing .cta-box{background:#111918;border-color:rgba(202,225,150,.18);box-shadow:none}.public-landing .solve-ttl,.public-landing .s-ttl,.public-landing .how-ttl,.public-landing .cta-ttl{color:#f3f6f1}.public-landing .solve-bdy,.public-landing .s-sub,.public-landing .cta-sub{color:#a7b0aa}.public-landing .btn-lime{background:#a8dd4a;color:#0b100b}.public-landing .btn-ink,.public-landing .btn-ghost{background:#111918;color:#f3f6f1;border-color:rgba(202,225,150,.22)}.public-landing footer{background:#070c0b;border-color:rgba(202,225,150,.14)}
+
+/* Isolated Hard Truth cards — unaffected by legacy reveal or grid rules. */
+.public-landing .truth-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; width:100%; align-items:stretch; }
+.public-landing .truth-card { min-width:0; min-height:342px; overflow:hidden; position:relative; display:flex; flex-direction:column; border:1px solid rgba(255,255,255,.08); border-radius:18px; background:rgba(255,255,255,.04); }
+.public-landing .truth-visual { height:200px; flex:none; display:flex; align-items:center; justify-content:center; overflow:hidden; background:rgba(0,0,0,.3); }
+.public-landing .truth-visual svg { display:block; width:100%; height:100%; }
+.public-landing .truth-emotion { position:absolute; z-index:1; top:12px; right:12px; padding:4px 10px; border-radius:100px; background:rgba(0,0,0,.6); color:rgba(255,255,255,.6); font-size:11px; backdrop-filter:blur(8px); }
+.public-landing .truth-body { flex:1; padding:22px 22px 26px; }
+.public-landing .truth-label { margin-bottom:8px; color:rgba(168,230,61,.7); font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+.public-landing .truth-title { margin-bottom:8px; color:#fff; font-size:15px; font-weight:500; line-height:1.4; }
+.public-landing .truth-copy { color:rgba(255,255,255,.45); font-size:13px; line-height:1.65; }
+.public-landing .truth-overlay { display:none; }
+@media (max-width:640px) { .public-landing .truth-grid { grid-template-columns:1fr; } }
+
+/* How We Fix It: premium dark/lime card treatment. */
+.public-landing .solve-section { position:relative; overflow:hidden; background:radial-gradient(circle at 88% 13%,rgba(168,230,61,.14),transparent 20%),#050908; }
+.public-landing .solve-section::before { content:''; position:absolute; top:-120px; right:-75px; width:420px; height:420px; border:1px solid rgba(168,230,61,.14); border-radius:50%; box-shadow:0 0 0 52px rgba(168,230,61,.025),0 0 0 104px rgba(168,230,61,.018); pointer-events:none; }
+.public-landing .solve-section .si { position:relative; z-index:1; }
+.public-landing .solve-section .s-eye { color:#a8e63d; font-size:13px; }
+.public-landing .solve-section .s-ttl { max-width:700px; color:#f3f6f1; font-size:clamp(40px,4vw,62px); line-height:1.02; }
+.public-landing .solve-section .s-ttl .serif { color:#a8e63d; }
+.public-landing .solve-section .s-sub { max-width:650px; color:#c4ccc4; font-size:18px; line-height:1.7; }
+.public-landing .solution-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:42px; }
+.public-landing .solution-card { min-width:0; min-height:176px; padding:22px 26px 18px 104px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.16); border-radius:16px; background:radial-gradient(circle at 92% 92%,rgba(168,230,61,.1),transparent 25%),linear-gradient(135deg,rgba(17,27,25,.95),rgba(6,12,11,.98)); box-shadow:inset 0 1px rgba(255,255,255,.03); }
+.public-landing .solution-card::before { content:''; position:absolute; left:23px; top:24px; width:56px; height:56px; border:1px solid rgba(168,230,61,.25); border-radius:17px; background:rgba(168,230,61,.08); box-shadow:0 0 28px rgba(168,230,61,.09); }
+.public-landing .solution-icon { position:absolute; z-index:1; left:23px; top:24px; width:56px; height:56px; display:grid; place-items:center; color:#b9ee5a; font-size:22px; line-height:1; filter:drop-shadow(0 0 7px rgba(168,230,61,.35)); }
+.public-landing .solution-card::after { position:absolute; right:25px; top:29px; color:rgba(255,255,255,.055); font-size:70px; font-weight:700; line-height:1; }
+.public-landing .solution-card:nth-child(1)::after { content:'01'; }.public-landing .solution-card:nth-child(2)::after { content:'02'; }.public-landing .solution-card:nth-child(3)::after { content:'03'; }.public-landing .solution-card:nth-child(4)::after { content:'04'; }
+.public-landing .solution-card .solve-num { position:absolute; left:104px; top:25px; margin:0; color:#a8e63d; font-size:17px; font-weight:600; }
+.public-landing .solution-card .solve-ttl { margin-top:27px; max-width:280px; color:#f7f8f5; font-size:20px; line-height:1.25; }
+.public-landing .solution-card .solve-ttl::after { content:''; display:block; width:34px; height:2px; margin-top:13px; background:#a8e63d; }
+.public-landing .solution-card .solve-bdy { max-width:340px; margin-top:12px; color:#c0c8c0; font-size:14px; line-height:1.55; }
+.public-landing .solution-card:nth-child(2) { border:1px solid #a8e63d; padding-top:25px; box-shadow:0 0 28px rgba(168,230,61,.12),inset 0 1px rgba(255,255,255,.05); }
+@media (max-width:800px) { .public-landing .solution-card { padding:32px 28px 28px 110px; }.public-landing .solution-card::before { left:22px; top:28px; width:64px; height:64px; }.public-landing .solution-card .solve-num { left:110px; top:34px; }.public-landing .solution-card .solve-ttl { font-size:23px; } }
+@media (max-width:640px) { .public-landing .solution-grid { grid-template-columns:1fr; margin-top:40px; } }
+
+/* Preserve the original dark "Why Now" panel despite landing-page theme variables. */
+.public-landing .dark-section { background:#111 !important; color:#fff; }
+.public-landing .dark-section::before { background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(168,230,61,.07) 0%,transparent 70%); }
+.public-landing .dark-section .dark-s-ttl { color:#fff; }
+.public-landing .dark-section .dark-s-sub { color:rgba(255,255,255,.45); }
+.public-landing .dark-section .fpill { background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.09); color:rgba(255,255,255,.65); }
+
+/* Landing hero redesign only. */
+.home-navbar { position:fixed !important; top:20px !important; left:28px !important; right:28px !important; height:66px !important; padding:0 26px !important; border:1px solid rgba(255,255,255,.05) !important; border-radius:18px !important; background:rgba(16,22,20,.9) !important; box-shadow:none !important; }
+.public-home-main { background:#050908; }
+.home-navbar .nav-logo { font-size:26px !important; color:#f3f6f1 !important; }.home-navbar .nav-logo em { color:#a8e63d !important; }.home-navbar .nav-links a { color:#f3f6f1 !important; font-size:15px !important; }.home-navbar .nav-actions .btn { min-width:104px; padding:10px 15px; font-size:14px; }
+.public-landing .hero { min-height:100vh; padding:98px 5vw 72px; background:#050908; }
+.public-landing nav.hero-nav { position:absolute; inset:20px 28px auto; width:auto; height:84px; padding:0 36px; border:1px solid rgba(255,255,255,.05); border-radius:20px; background:rgba(16,22,20,.9); box-shadow:none; }
+.public-landing .hero-nav .nav-logo { font-size:29px; color:#f3f6f1; }
+.public-landing .hero-nav .nav-logo em { color:#a8e63d; }
+.public-landing .hero-nav .nav-links a { color:#f3f6f1; font-size:16px; }
+.public-landing .hero-nav .nav-actions .btn { min-width:126px; padding:13px 20px; font-size:16px; }
+.public-landing .hero-redesign { position:relative; max-width:1100px; min-height:650px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.public-landing .hero-redesign .hero-left { max-width:650px; padding-top:42px; }
+.public-landing .hero-redesign .hero-eyebrow { display:inline-flex; align-items:center; width:auto; padding:10px 17px; border:1px solid rgba(168,230,61,.42); border-radius:100px; color:#b8ee54; background:rgba(7,12,11,.7); }
+.public-landing .hero-redesign .hero-h1 { font-size:clamp(32px,5.5vw,71px); line-height:.98; letter-spacing:-.065em; margin:34px 0 28px; color:#f7f8f5; }
+.public-landing .hero-redesign .italic-word { color:#a8e63d; }
+.public-landing .hero-redesign .hero-sub { max-width:610px; margin:0 auto 38px; font-size:18px; color:#c8cec8; }
+.public-landing .hero-redesign .hero-ctas { justify-content:center; }
+.public-landing .hero-redesign .btn-lg { min-width:200px; padding:19px 28px; }
+.public-landing .hero-redesign .btn-ink { background:transparent; border-color:rgba(168,230,61,.4); color:#f3f6f1; }
+@media (max-width:900px) { }
+@media (max-width:640px) { .public-landing nav.hero-nav { inset:12px; height:64px; padding:0 20px; } .public-landing .hero-nav .nav-links { display:none; } .public-landing .hero-redesign .hero-left { padding-top:42px; } .public-landing .hero-redesign .hero-h1 { font-size:57px; } }
+@media (max-width:640px) { .home-navbar { top:12px !important; left:12px !important; right:12px !important; height:64px !important; padding:0 20px !important; } .home-navbar .nav-links { display:none; } }
+
+/* Compact illustrated "How It Works" cards. */
+.public-landing .how-section { background:#070c0b; }
+.public-landing .how-section .s-eye { color:rgba(168,230,61,.8); }
+.public-landing .how-section .s-ttl { color:#fff; }
+.public-landing .journey-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; max-width:920px; margin:62px auto 0; overflow:visible; border:0; }
+.public-landing .journey-card { min-width:0; min-height:295px; padding:82px 28px 28px; position:relative; text-align:center; background:radial-gradient(circle at 50% 18%,rgba(168,230,61,.11),transparent 25%),rgba(13,22,19,.76); border:1px solid rgba(168,230,61,.22); border-radius:14px; }
+.public-landing .journey-card::before { content:''; position:absolute; top:-19px; left:50%; width:36px; height:36px; transform:translateX(-50%); border:1px solid rgba(168,230,61,.48); border-radius:50%; background:#0c1511; box-shadow:0 0 18px rgba(168,230,61,.32); }
+.public-landing .journey-card:nth-child(1)::after { content:'1'; }.public-landing .journey-card:nth-child(2)::after { content:'2'; }.public-landing .journey-card:nth-child(3)::after { content:'3'; }
+.public-landing .journey-card::after { position:absolute; top:-11px; left:50%; z-index:1; transform:translateX(-50%); color:#b8ed5a; font-size:15px; font-weight:700; }
+.public-landing .journey-icon { position:absolute; top:31px; left:50%; transform:translateX(-50%); display:grid; place-items:center; width:44px; height:44px; border:1px solid rgba(168,230,61,.2); border-radius:12px; color:#b8ed5a; font-size:29px; line-height:1; text-shadow:0 0 10px rgba(168,230,61,.45); }
+.public-landing .journey-card .step-num { display:none; }
+.public-landing .journey-card .step-ttl { margin:25px 0 11px; color:#f4f6f2; font-size:15px; line-height:1.35; }
+.public-landing .journey-card .step-ttl::after { content:''; display:block; width:24px; height:2px; margin:9px auto 0; background:#a8e63d; }
+.public-landing .journey-card .step-bdy { color:rgba(255,255,255,.55); font-size:11px; line-height:1.6; }
+.public-landing .journey-card .step-arrow { display:none; }
+.public-landing .journey-card .step-wa { display:inline-flex; margin-top:10px; color:#a8e63d; border-color:rgba(168,230,61,.3); font-size:9px; }
+@media (max-width:640px) { .public-landing .journey-grid { grid-template-columns:1fr; max-width:330px; } .public-landing .journey-card { min-height:0; } }
+
+/* Founders' social icons need contrast against their light circular buttons. */
+.public-landing .creator-socials a { color:#25342d; border-color:rgba(37,52,45,.2); background:#fff; }
+.public-landing .creator-socials svg { stroke:currentColor; stroke-width:2.3; opacity:1; }
+.public-landing .creator-socials a:hover { color:#3b6d11; border-color:#a8e63d; }

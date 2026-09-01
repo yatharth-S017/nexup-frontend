@@ -1,0 +1,63 @@
+.creator-header {
+  --creator-lime: #b7f343;
+  height: 86px;
+  margin: 22px 30px 0;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(196, 232, 198, .17);
+  border-radius: 22px;
+  background: rgba(4, 8, 9, .88);
+  color: #f7f8f5;
+  font-family: 'DM Sans', sans-serif;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.creator-header *, .creator-header *::before, .creator-header *::after { box-sizing: border-box; }
+.creator-header a { color: inherit; text-decoration: none; }
+.creator-header-logo { display: flex; align-items: center; gap: 13px; color: #f7f8f5; font-size: 30px; font-weight: 700; letter-spacing: -.05em; }
+.creator-header-logo b { color: var(--creator-lime); font: 700 39px/1 Arial; text-shadow: 0 0 14px #9de42b; }
+
+.creator-header-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 58px;
+  height: 100%;
+  padding: 0;
+  min-height: 0;
+  background: transparent;
+  border: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.creator-header-nav a { position: relative; color: #eef0ee; font-size: 16px; font-weight: 600; white-space: nowrap; }
+.creator-header-nav a:hover { color: var(--creator-lime); }
+.creator-header-nav a.active::after { content: ''; position: absolute; right: 12%; bottom: -27px; left: 12%; height: 2px; background: var(--creator-lime); box-shadow: 0 0 14px var(--creator-lime); }
+
+.creator-header-actions { display: flex; align-items: center; gap: 19px; margin-left: auto; }
+.creator-header-avatar { display: grid; width: 50px; height: 50px; place-items: center; border: 2px solid var(--creator-lime); border-radius: 50%; background: linear-gradient(140deg, #7eae39, #1d3222); box-shadow: 0 0 16px rgba(183, 243, 67, .32); font-size: 18px; font-weight: 800; }
+.creator-header-frame { padding-top: 22px; background: #05090a; }
+.creator-header { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .creator-header-frame { padding-top: 14px; }
+  .creator-header { margin: 0 14px; padding: 0 25px; }
+  .creator-header-nav { position: static; margin-left: auto; transform: none; gap: 22px; }
+  .creator-header-actions { margin-left: 15px; }
+}
+
+@media (max-width: 600px) {
+  .creator-header { height: 68px; margin: 0 14px; padding: 0 17px; }
+  .creator-header-logo { font-size: 25px; }
+  .creator-header-logo b { font-size: 31px; }
+  .creator-header-nav { display: none; }
+  .creator-header-avatar { width: 42px; height: 42px; }
+  .creator-header-actions { gap: 8px; }
+}

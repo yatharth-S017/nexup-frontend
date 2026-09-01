@@ -1,0 +1,35 @@
+/* Isolate the home navigation from the global public-navbar styles. */
+.creator-home-header nav { background: transparent; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0; min-height: 0; }
+
+/* Compact pass for the creator workspace. */
+.creator-home-header { height: 86px; padding: 0 40px; }
+.creator-home-logo { font-size: 30px; }
+.creator-home-logo b { font-size: 39px; }
+.creator-home-header nav a { font-size: 16px; }
+.creator-home-header nav a:first-child::after { bottom: -27px; }
+.creator-avatar { width: 50px; height: 50px; font-size: 18px; }
+.creator-welcome { min-height: 440px; padding: 42px 68px; }
+.creator-eyebrow { font-size: 16px; }
+.creator-welcome h1 { font-size: clamp(44px, 4.5vw, 64px); }
+.creator-welcome-copy > p { font-size: 18px; }
+.creator-primary-action, .creator-secondary-action, .creator-section-title > a, .creator-profile-cta > a { font-size: 16px; }
+.creator-primary-action { padding: 16px 28px; }
+.creator-secondary-action { padding: 15px 30px; }
+.creator-visual strong { font-size: clamp(155px, 20vw, 290px); }
+.creator-snapshot { padding: 22px; }
+.creator-section-title h2 { font-size: 28px; }
+.creator-metrics article { min-height: 148px; padding: 21px; }
+.creator-metrics article > b { flex-basis: 60px; height: 60px; font-size: 28px; }
+.creator-metrics strong { font-size: 42px; }
+.creator-guidance { padding-top: 48px; }
+.creator-guidance h2 { font-size: clamp(34px, 3.5vw, 52px); }
+.creator-guidance > p { font-size: 18px; }
+.creator-guidance-grid article { min-height: 325px; padding-top: 51px; }
+.creator-guidance-grid article > b { width: 82px; height: 82px; font-size: 38px; }
+.creator-profile-cta h3 { font-size: 24px; }
+.creator-profile-cta p { font-size: 16px; }
+
+@media (max-width: 600px) {
+  .creator-home-header { height: 68px; }
+  .creator-welcome h1 { font-size: 45px; }
+}

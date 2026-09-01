@@ -1,0 +1,28 @@
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Modal from '../../../components/ui/Modal.jsx';
+import { campaignService } from '../../../services/campaignService.js';
+import { formatDate } from './campaignUtils.js';
+import './BrandCampaignApplicants.css';
+import './BrandCampaignApplicantsFix.css';
+
+const applicationId = app => app?.applicationId || app?.id;
+const creatorId = app => app?.creatorId || app?.creator?.id || app?.creator?.creatorId || app?.userId;
+const creatorName = app => app?.creatorName || app?.creator?.name || app?.creator?.fullName || app?.name || 'Creator';
+const applicantMessage = app => app?.applicantMessage || app?.applicationMessage || app?.message || app?.creator?.message || '';
+const currentStatus = app => String(app?.status || app?.applicationStatus || 'PENDING').toUpperCase();
+const submissionUrl = app => app?.submissionUrl || app?.submission?.submissionUrl || app?.submission?.url || '';
+const submittedAt = app => app?.submittedAt || app?.submission?.submittedAt;
+const label = value => value[0] + value.slice(1).toLowerCase();
+
+export default function BrandCampaignApplicantsPage() {
+  const { campaignId } = useParams();
+  const navigate = useNavigate();
+  const [campaign, setCampaign] = useState(null); const [apps, setApps] = useState([]); const [loading, setLoading] = useState(true); const [message, setMessage] = useState(''); const [submission, setSubmission] = useState(null);
+  const load = async () => { setLoading(true); try { const [campaignData, applicationData] = await Promise.all([campaignService.getCampaignDetails(campaignId), campaignService.getCampaignApplications(campaignId)]); setCampaign(campaignData); setApps(Array.isArray(applicationData) ? applicationData : []); setMessage(''); } catch { setMessage('Unable to load applications.'); } finally { setLoading(false); } };
+  useEffect(() => { load(); }, [campaignId]);
+  const change = async (app, action) => { try { await (action === 'accept' ? campaignService.acceptApplication(applicationId(app)) : campaignService.rejectApplication(applicationId(app))); const status = action === 'accept' ? 'ACCEPTED' : 'REJECTED'; setApps(current => current.map(item => applicationId(item) === applicationId(app) ? { ...item, status } : item)); } catch { setMessage('Unable to update the application.'); } };
+  const viewAnalytics = async app => { try { const detail = creatorId(app) ? app : await campaignService.getBrandApplicationDetails(applicationId(app)); const id = creatorId(detail); if (!id) throw new Error('Missing creator id'); navigate(`/brand/creators/${id}/analytics`); } catch { setMessage('Unable to open creator analytics.'); } };
+  if (loading) return <div className="applicants-loading">Loading applications…</div>;
+  return <main className="brand-applicants"><Link to={`/brand/campaigns/${campaignId}`} className="applicants-back">← Back to Campaign</Link><header><div><h1>Applicants</h1><p>{campaign?.title || 'Campaign'}</p><small>{apps.length} applicants</small></div></header>{message && <div className="applicants-message">{message}</div>}<section className="applicants-table"><div className="applicants-head"><span>Creator</span><span>Applied</span><span>Status</span><span>Actions</span></div>{apps.map(app => { const status = currentStatus(app); const url = submissionUrl(app); const submitted = Boolean(url) || status === 'SUBMITTED'; const accepted = status === 'ACCEPTED' || status === 'SUBMITTED'; const canViewAnalytics = Boolean(creatorId(app)); const hasActions = canViewAnalytics || status === 'PENDING' || (submitted && Boolean(url)); return <div className={`applicant-row ${hasActions ? '' : 'without-actions'}`} key={applicationId(app)}><div className="applicant-creator"><b>{creatorName(app).charAt(0)}</b><span><strong>{creatorName(app)}</strong>{applicantMessage(app) ? <small className="applicant-message">{applicantMessage(app)}</small> : <small>{app.niche || app.creator?.niche || '—'}</small>}</span></div><div className="applicant-applied">{formatDate(app.appliedAt || app.createdAt)}</div><div className="applicant-status-cell"><span className={`applicant-status ${accepted ? 'accepted' : status.toLowerCase()}`}>{accepted ? 'Accepted' : label(status)}</span>{accepted && <small className={`applicant-submission-state ${submitted ? 'submitted' : ''}`}>{submitted ? 'Submitted' : 'Awaiting Submission'}</small>}</div>{hasActions && <div className="applicant-actions">{canViewAnalytics && <button onClick={() => viewAnalytics(app)}>View Analytics</button>}{status === 'PENDING' && <><button className="accept" onClick={() => change(app, 'accept')}>Accept</button><button className="reject" onClick={() => change(app, 'reject')}>Reject</button></>}{submitted && url && <button onClick={() => setSubmission(app)}>View Submission</button>}</div>}</div>; })}</section><Modal open={Boolean(submission)} className="creator-application-modal submission-modal"><button className="submission-close" onClick={() => setSubmission(null)} aria-label="Close">×</button><h2>Submission</h2>{submission ? <><dl className="submission-details"><div><dt>Creator</dt><dd>{creatorName(submission)}</dd></div><div><dt>Campaign</dt><dd>{campaign?.title || submission.campaignTitle || 'Campaign'}</dd></div><div><dt>Submitted date</dt><dd>{formatDate(submittedAt(submission))}</dd></div><div><dt>Video URL</dt><dd>{submissionUrl(submission) || 'Submission unavailable.'}</dd></div></dl>{submissionUrl(submission) && <a className="btn-send submission-open" href={submissionUrl(submission)} target="_blank" rel="noopener noreferrer">Open Video</a>}</> : <p>Submission unavailable.</p>}</Modal></main>;
+}
