@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>NexUp - join the community</title>
+  <link rel="icon" type="image/png" href="./Public/photos/logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Firebase - replace YOUR_ values with your actual project config -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzDfUR-6GOFNfg3Wz1-oUfKNiGe_vq5L4",
+      authDomain: "pipeup-9eeba.firebaseapp.com",
+      projectId: "pipeup-9eeba",
+      storageBucket: "pipeup-9eeba.firebasestorage.app",
+      messagingSenderId: "1097020919727",
+      appId: "1:1097020919727:web:b62b84e1a9d0028426695a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <style>
+    /* ── reset & tokens ──────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --lime: #A8E63D;
+      --lime-light: #C5F26A;
+      --lime-tint: #EAF3DE;
+      --lime-dark: #3B6D11;
+      --lime-mid: #639922;
+      --ink: #111111;
+      --muted: #6B7280;
+      --muted2: #9CA3AF;
+      --surface: #F7FAF4;
+      --white: #FFFFFF;
+      --border: #E5E7EB;
+      --red: #EF4444;
+      --r-sm: 4px;
+      --r-md: 9px;
+      --r-lg: 14px;
+      --r-xl: 20px;
+      --card-w: min(520px, 92vw);
+      --spring: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    html {
+      overflow-x: hidden
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 100svh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── animated gradient background ───────────────────────────── */
+    .bg-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: linear-gradient(155deg, #f7faf4 0%, #eef8e2 40%, #f7faf4 70%, #eaf3de 100%);
+    }
+
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      will-change: transform
+    }
+
+    .bb1 {
+      width: 70vmax;
+      height: 70vmax;
+      top: -28vmax;
+      right: -20vmax;
+      background: radial-gradient(circle, rgba(168, 230, 61, .22) 0%, transparent 62%);
+      animation: drift1 24s ease-in-out infinite alternate;
+    }
+
+    .bb2 {
+      width: 58vmax;
+      height: 58vmax;
+      bottom: -22vmax;
+      left: -18vmax;
+      background: radial-gradient(circle, rgba(168, 230, 61, .15) 0%, transparent 65%);
+      animation: drift2 30s ease-in-out infinite alternate;
+    }
+
+    .bb3 {
+      width: 40vmax;
+      height: 40vmax;
+      top: 35%;
+      left: 28%;
+      background: radial-gradient(circle, rgba(197, 242, 106, .17) 0%, transparent 65%);
+      animation: drift3 20s ease-in-out infinite alternate;
+    }
+
+    .bb4 {
+      width: 25vmax;
+      height: 25vmax;
+      top: 12%;
+      left: 55%;
+      background: radial-gradient(circle, rgba(168, 230, 61, .10) 0%, transparent 68%);
+      animation: drift1 34s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes drift1 {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      100% {
+        transform: translate(38px, -58px)
+      }
+    }
+
+    @keyframes drift2 {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      100% {
+        transform: translate(-28px, 48px)
+      }
+    }
+
+    @keyframes drift3 {
+      0% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      100% {
+        transform: translate(46px, 28px) scale(1.08)
+      }
+    }
+
+    /* ── nav ─────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 58px;
+      padding: 0 clamp(16px, 5vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(247, 250, 244, .9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, .055);
+    }
+
+    .nav-logo {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      color: var(--ink);
+      text-decoration: none
+    }
+
+    .nav-logo em {
+      font-style: normal;
+      color: var(--lime-dark)
+    }
+
+    .nav-meta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    /* ── progress + engage strip ─────────────────────────────────── */
+    .progress-track {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      height: 3px;
+      background: var(--border);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--lime-dark), var(--lime), var(--lime-light));
+      border-radius: 0 2px 2px 0;
+      transition: width .55s var(--spring);
+    }
+
+    .engage-strip {
+      position: fixed;
+      top: 61px;
+      left: 0;
+      right: 0;
+      z-index: 89;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 5vw, 48px);
+    }
+
+    .engage-msg {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--lime-dark);
+      letter-spacing: .03em;
+      transition: opacity .3s
+    }
+
+    .step-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    /* ── stage + card ────────────────────────────────────────────── */
+    .stage {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 16px 50px;
+    }
+
+    .card-wrap {
+      width: var(--card-w);
+      position: relative
+    }
+
+    .form-card {
+      width: 100%;
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid rgba(255, 255, 255, .94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--r-xl);
+      padding: clamp(22px, 5vw, 38px) clamp(18px, 5vw, 34px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .04), 0 20px 50px rgba(0, 0, 0, .09);
+      position: relative;
+      overflow: hidden;
+      will-change: transform, opacity;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lime-dark), var(--lime), var(--lime-light));
+      border-radius: var(--r-xl) var(--r-xl) 0 0;
+    }
+
+    /* ── card transitions (compositor-only: transform + opacity) ─── */
+    .card-out {
+      animation: cOut .38s cubic-bezier(.4, 0, 1, 1) forwards;
+      pointer-events: none
+    }
+
+    .card-in {
+      animation: cIn .50s var(--spring) forwards;
+      pointer-events: none
+    }
+
+    @keyframes cOut {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(-50px) scale(.93);
+        opacity: 0
+      }
+    }
+
+    @keyframes cIn {
+      0% {
+        transform: translateY(50px) scale(.95);
+        opacity: 0
+      }
+
+      62% {
+        transform: translateY(-5px) scale(1.01);
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1
+      }
+    }
+
+    /* ── milestone toast ─────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9998;
+      background: var(--ink);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      pointer-events: none;
+      white-space: nowrap;
+      animation: toastAnim 2.4s var(--spring) forwards;
+    }
+
+    @keyframes toastAnim {
+      0% {
+        transform: translate(-50%, -50%) scale(.65);
+        opacity: 0
+      }
+
+      18% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1
+      }
+
+      65% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1
+      }
+
+      100% {
+        transform: translate(-50%, -68px) scale(.9);
+        opacity: 0
+      }
+    }
+
+    /* ── card inner ──────────────────────────────────────────────── */
+    .step-label {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--lime-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--lime);
+      border-radius: 50%
+    }
+
+    .step-q {
+      font-size: clamp(17px, 3.4vw, 23px);
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .step-hint {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px
+    }
+
+    /* ── inputs ──────────────────────────────────────────────────── */
+    .f-input,
+    .f-textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .84);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      -webkit-appearance: none;
+    }
+
+    .f-input::placeholder,
+    .f-textarea::placeholder {
+      color: var(--muted2)
+    }
+
+    .f-input:focus,
+    .f-textarea:focus {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(168, 230, 61, .18)
+    }
+
+    .f-input.err,
+    .f-textarea.err {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, .12)
+    }
+
+    .f-textarea {
+      resize: none;
+      min-height: 98px;
+      line-height: 1.65
+    }
+
+    .char-cc {
+      font-size: 11px;
+      color: var(--muted2);
+      text-align: right;
+      margin-top: 4px;
+      transition: color .2s
+    }
+
+    .char-cc.warn {
+      color: var(--lime-mid)
+    }
+
+    /* ── autocomplete ────────────────────────────────────────────── */
+    .ac-wrap {
+      position: relative
+    }
+
+    .ac-drop {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .13);
+      max-height: 214px;
+      overflow-y: auto;
+      z-index: 50;
+      display: none;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .ac-drop.open {
+      display: block;
+      animation: dropIn .2s var(--spring)
+    }
+
+    @keyframes dropIn {
+      from {
+        transform: translateY(-7px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    .ac-item {
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background .1s;
+      border-bottom: 1px solid rgba(0, 0, 0, .04);
+    }
+
+    .ac-item:last-child {
+      border-bottom: none
+    }
+
+    .ac-item:hover,
+    .ac-item.hi {
+      background: var(--lime-tint);
+      color: var(--lime-dark)
+    }
+
+    .ac-item mark {
+      background: none;
+      color: var(--lime-dark);
+      font-weight: 600
+    }
+
+    .ac-empty {
+      padding: 11px 14px;
+      font-size: 13px;
+      color: var(--muted2)
+    }
+
+    /* ── checkboxes ──────────────────────────────────────────────── */
+    .cb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .cb-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px
+    }
+
+    .cb-checkall {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--lime-dark);
+      background: var(--lime-tint);
+      border: 1.5px solid rgba(168, 230, 61, .45);
+      border-radius: var(--r-md);
+      padding: 7px 11px;
+      cursor: pointer;
+      transition: background .15s, transform .15s var(--spring);
+    }
+
+    .cb-checkall:hover {
+      background: var(--lime-light);
+      transform: translateY(-1px)
+    }
+
+    .cb-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .cb-row input {
+      display: none
+    }
+
+    .cb-box {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 5px;
+      margin-top: 1px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .18s, background .18s;
+      position: relative;
+    }
+
+    .cb-row input:checked~.cb-box {
+      background: var(--lime);
+      border-color: var(--lime)
+    }
+
+    .cb-box::after {
+      content: '';
+      width: 5px;
+      height: 9px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      transform: rotate(42deg) scale(0) translateY(-1px);
+      transition: transform .18s var(--spring);
+    }
+
+    .cb-row input:checked~.cb-box::after {
+      transform: rotate(42deg) scale(1) translateY(-1px)
+    }
+
+    .cb-lbl {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink)
+    }
+
+    .cb-lbl a {
+      color: var(--lime-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px
+    }
+
+    /* ── niche / tags ────────────────────────────────────────────── */
+    .niche-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 9px
+    }
+
+    .niche-inp {
+      flex: 1;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .85);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .niche-inp::placeholder {
+      color: var(--muted2)
+    }
+
+    .niche-inp:focus {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(168, 230, 61, .18)
+    }
+
+    .niche-add {
+      height: 42px;
+      width: 42px;
+      flex-shrink: 0;
+      background: var(--lime);
+      border: none;
+      border-radius: var(--r-md);
+      color: var(--lime-dark);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, transform .15s var(--spring);
+      box-shadow: 0 2px 10px rgba(168, 230, 61, .3);
+    }
+
+    .niche-add:hover {
+      background: var(--lime-light);
+      transform: scale(1.08)
+    }
+
+    .niche-add:active {
+      transform: scale(.93)
+    }
+
+    .tags-sel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+      min-height: 0
+    }
+
+    .tag-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--lime-dark);
+      background: var(--lime-tint);
+      border: 1.5px solid rgba(168, 230, 61, .4);
+      border-radius: 100px;
+      padding: 4px 10px 4px 12px;
+      animation: popIn .2s var(--spring) both;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(.6);
+        opacity: 0
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .tag-pill button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1;
+      color: var(--lime-mid);
+      padding: 0;
+      display: flex;
+      transition: color .12s;
+    }
+
+    .tag-pill button:hover {
+      color: var(--lime-dark)
+    }
+
+    .niche-div {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin: 8px 0 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .niche-div::before,
+    .niche-div::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 112px;
+      overflow-y: auto;
+      padding: 2px 4px 8px 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+      mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+    }
+
+    .chips-grid::-webkit-scrollbar {
+      width: 6px
+    }
+
+    .chips-grid::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 99px
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: white;
+      cursor: pointer;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: border-color .15s, background .15s, color .15s, transform .14s var(--spring);
+    }
+
+    .chip:hover {
+      border-color: var(--lime);
+      color: var(--lime-dark);
+      background: var(--lime-tint);
+      transform: translateY(-1px)
+    }
+
+    .chip.on {
+      border-color: var(--lime);
+      color: var(--lime-dark);
+      background: var(--lime-tint)
+    }
+
+    .chip.hidden {
+      display: none
+    }
+
+    .chip.off {
+      opacity: .3;
+      cursor: default;
+      pointer-events: none
+    }
+
+    .niche-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px
+    }
+
+    .tags-count {
+      font-size: 11.5px;
+      color: var(--muted)
+    }
+
+    .max-msg {
+      font-size: 11px;
+      color: var(--red);
+      display: none
+    }
+
+    .max-msg.show {
+      display: block
+    }
+
+    /* ── pitch ───────────────────────────────────────────────────── */
+    .pitch-wrap {
+      position: relative
+    }
+
+    .pitch-pfx {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--muted);
+      pointer-events: none
+    }
+
+    .pitch-inp {
+      padding-left: 30px !important;
+      font-size: 21px !important;
+      font-weight: 500 !important;
+      letter-spacing: -.02em
+    }
+
+    /* ── actions ─────────────────────────────────────────────────── */
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .act-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap
+    }
+
+    .btn-back {
+      height: 42px;
+      padding: 0 14px;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color .18s, color .18s, background .18s;
+    }
+
+    .btn-back:hover {
+      border-color: var(--lime);
+      color: var(--lime-dark);
+      background: var(--lime-tint)
+    }
+
+    .btn-send {
+      height: 42px;
+      padding: 0 24px;
+      background: var(--lime);
+      color: var(--lime-dark);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: transform .2s var(--spring), box-shadow .2s, background .15s;
+      box-shadow: 0 4px 18px rgba(168, 230, 61, .35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-send::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .16);
+      transform: translateX(-110%) skewX(-12deg);
+      transition: transform .4s var(--spring);
+    }
+
+    .btn-send:hover::before {
+      transform: translateX(110%) skewX(-12deg)
+    }
+
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(168, 230, 61, .44);
+      background: var(--lime-light)
+    }
+
+    .btn-send:active {
+      transform: scale(.97)
+    }
+
+    .btn-send:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none
+    }
+
+    .btn-skip {
+      font-size: 12.5px;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-family: 'DM Sans', sans-serif;
+      padding: 4px;
+      transition: color .18s;
+    }
+
+    .btn-skip:hover {
+      color: var(--ink)
+    }
+
+    .enter-hint {
+      font-size: 11px;
+      color: var(--muted2);
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: var(--muted);
+    }
+
+    /* ── error msg ───────────────────────────────────────────────── */
+    .err-msg {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 6px;
+      display: none
+    }
+
+    .err-msg.show {
+      display: block
+    }
+
+    /* ── loading spinner ─────────────────────────────────────────── */
+    .spin {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(59, 109, 17, .25);
+      border-top-color: var(--lime-dark);
+      border-radius: 50%;
+      animation: spin .65s linear infinite;
+      display: none
+    }
+
+    .btn-send.loading .spin {
+      display: block
+    }
+
+    .btn-send.loading .btn-lbl {
+      display: none
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* ── success ─────────────────────────────────────────────────── */
+    .success-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      width: var(--card-w);
+      animation: cIn .6s var(--spring)
+    }
+
+    .success-screen.show {
+      display: flex
+    }
+
+    .suc-icon {
+      width: 66px;
+      height: 66px;
+      background: var(--lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(168, 230, 61, .45);
+      animation: popIn .6s var(--spring) .12s both;
+    }
+
+    .suc-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--lime-dark);
+      background: var(--lime-tint);
+      border: 1px solid rgba(168, 230, 61, .3);
+      padding: 5px 13px;
+      border-radius: var(--r-sm)
+    }
+
+    .suc-title {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+      color: var(--ink)
+    }
+
+    .suc-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 340px
+    }
+
+    .redirect-box {
+      font-size: 13px;
+      color: var(--lime-dark);
+      font-weight: 500;
+      background: var(--lime-tint);
+      border: 1px solid rgba(168, 230, 61, .3);
+      border-radius: var(--r-md);
+      padding: 12px 18px;
+      max-width: 340px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rcount {
+      font-size: 20px;
+      font-weight: 600;
+      min-width: 22px;
+      text-align: center
+    }
+
+    /* ── envelope particle ───────────────────────────────────────── */
+    .env {
+      position: fixed;
+      font-size: 20px;
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform, opacity;
+      animation: envFly .9s var(--spring) forwards;
+    }
+
+    @keyframes envFly {
+      0% {
+        transform: translate(var(--x), var(--y)) scale(1) rotate(0deg);
+        opacity: 1
+      }
+
+      50% {
+        transform: translate(calc(var(--x)+80px), calc(var(--y)-90px)) scale(1.2) rotate(-14deg);
+        opacity: 1
+      }
+
+      100% {
+        transform: translate(calc(var(--x)+220px), calc(var(--y)-200px)) scale(.2) rotate(-28deg);
+        opacity: 0
+      }
+    }
+
+    /* ── responsive ──────────────────────────────────────────────── */
+    @media(max-width:480px) {
+      .card-actions {
+        flex-wrap: wrap
+      }
+
+      .btn-send,
+      .btn-back {
+        width: 100%;
+        justify-content: center
+      }
+
+      .act-left {
+        width: 100%
+      }
+
+      .enter-hint {
+        display: none
+      }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E8CLQ8Q6PE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E8CLQ8Q6PE');
+</script>
+</head>
+
+<body>
+
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-blob bb1"></div>
+    <div class="bg-blob bb2"></div>
+    <div class="bg-blob bb3"></div>
+    <div class="bg-blob bb4"></div>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Nex<em>Up</em></a>
+    <span class="nav-meta">creator application</span>
+  </nav>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="pFill"></div>
+  </div>
+  <div class="engage-strip">
+    <span class="engage-msg" id="eMsg"></span>
+    <span class="step-badge" id="sBadge"></span>
+  </div>
+
+  <main class="stage">
+    <div class="card-wrap" id="cardWrap">
+      <div class="form-card" id="fCard"><!-- rendered by JS --></div>
+    </div>
+    <div class="success-screen" id="successScreen">
+      <div class="suc-icon">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+          <path d="M5 13l4 4L19 7" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="suc-badge">you're in! 🎉</div>
+      <h1 class="suc-title">welcome to<br>the NexUp family.</h1>
+      <p class="suc-sub">we've got your application. we'll review and reach out soon. real creators, real deals - this
+        is just the beginning.</p>
+      <div class="redirect-box">
+        <span>📲</span>
+        <span>joining our whatsapp community in <span class="rcount" id="rCount">5</span>s...</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* ─────────────────────────────────────────────────────────────
+       CONSTANTS - edit WHATSAPP_LINK before deploying
+    ───────────────────────────────────────────────────────────── */
+    const WHATSAPP_LINK = 'https://chat.whatsapp.com/Hq0MAlXp0F8LUJ8fUxnTC0';
+
+    const NICHES = [
+      'lifestyle', 'tech', 'gaming', 'beauty', 'fashion', 'fitness', 'food & cooking',
+      'travel', 'finance', 'education', 'music', 'comedy', 'vlogging', 'photography',
+      'art & design', 'sports', 'coding', 'study with me', 'motivation', 'anime',
+      'skincare', 'DIY & craft', 'dance', 'business', 'books', 'movies & series',
+      'mental health', 'news & current affairs', 'sustainable living', 'pets', 'college', 'iit', 'jee', 'competetive exams'
+    ];
+
+    const STATES = [
+      'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+      'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+      'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+      'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+      'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+      'Andaman & Nicobar', 'Chandigarh', 'D&NH and D&D', 'Delhi', 'J&K', 'Ladakh',
+      'Lakshadweep', 'Puducherry'
+    ];
+
+    const CITIES = {
+      'Andhra Pradesh': ['Visakhapatnam', 'Vijayawada', 'Guntur', 'Nellore', 'Kurnool', 'Tirupati', 'Rajahmundry', 'Kakinada', 'Kadapa', 'Anantapur', 'Eluru', 'Ongole', 'Vizianagaram', 'Chittoor', 'Srikakulam'],
+      'Arunachal Pradesh': ['Itanagar', 'Tawang', 'Ziro', 'Pasighat', 'Bomdila', 'Naharlagun', 'Roing'],
+      'Assam': ['Guwahati', 'Silchar', 'Dibrugarh', 'Jorhat', 'Nagaon', 'Tinsukia', 'Tezpur', 'Bongaigaon', 'Dhubri', 'Goalpara', 'Karimganj'],
+      'Bihar': ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur', 'Darbhanga', 'Arrah', 'Bihar Sharif', 'Begusarai', 'Katihar', 'Munger', 'Purnia', 'Hajipur', 'Saharsa', 'Chapra', 'Samastipur'],
+      'Chhattisgarh': ['Raipur', 'Bhilai', 'Bilaspur', 'Korba', 'Raigarh', 'Durg', 'Jagdalpur', 'Rajnandgaon', 'Ambikapur'],
+      'Goa': ['Panaji', 'Margao', 'Mapusa', 'Vasco da Gama', 'Ponda', 'Calangute', 'Madgaon'],
+      'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar', 'Jamnagar', 'Gandhinagar', 'Junagadh', 'Anand', 'Navsari', 'Morbi', 'Nadiad', 'Mehsana', 'Bharuch', 'Porbandar', 'Surendranagar'],
+      'Haryana': ['Gurugram', 'Faridabad', 'Panipat', 'Ambala', 'Yamunanagar', 'Rohtak', 'Hisar', 'Karnal', 'Sonipat', 'Panchkula', 'Bhiwani', 'Sirsa', 'Rewari', 'Kaithal'],
+      'Himachal Pradesh': ['Shimla', 'Manali', 'Dharamsala', 'Solan', 'Mandi', 'Kullu', 'Hamirpur', 'Baddi', 'Nahan', 'Bilaspur'],
+      'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad', 'Bokaro', 'Deoghar', 'Hazaribagh', 'Giridih', 'Ramgarh', 'Phusro'],
+      'Karnataka': ['Bengaluru', 'Mysuru', 'Hubballi', 'Mangaluru', 'Belagavi', 'Kalaburagi', 'Ballari', 'Vijayapura', 'Shivamogga', 'Tumakuru', 'Udupi', 'Raichur', 'Bidar', 'Dharwad', 'Davanagere'],
+      'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur', 'Kollam', 'Palakkad', 'Alappuzha', 'Malappuram', 'Kannur', 'Kottayam', 'Kasaragod', 'Ernakulam'],
+      'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur', 'Ujjain', 'Sagar', 'Dewas', 'Satna', 'Ratlam', 'Rewa', 'Singrauli', 'Burhanpur', 'Chhindwara', 'Guna'],
+      'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Thane', 'Nashik', 'Aurangabad', 'Solapur', 'Kalyan', 'Vasai-Virar', 'Amravati', 'Navi Mumbai', 'Kolhapur', 'Akola', 'Latur', 'Nanded', 'Sangli', 'Malegaon', 'Jalgaon', 'Dhule', 'Ahmednagar'],
+      'Manipur': ['Imphal', 'Thoubal', 'Bishnupur', 'Churachandpur', 'Senapati'],
+      'Meghalaya': ['Shillong', 'Tura', 'Nongstoin', 'Jowai', 'Baghmara'],
+      'Mizoram': ['Aizawl', 'Lunglei', 'Champhai', 'Serchhip', 'Kolasib'],
+      'Nagaland': ['Kohima', 'Dimapur', 'Mokokchung', 'Tuensang', 'Wokha', 'Zunheboto'],
+      'Odisha': ['Bhubaneswar', 'Cuttack', 'Rourkela', 'Berhampur', 'Sambalpur', 'Puri', 'Balasore', 'Bhadrak', 'Baripada', 'Jharsuguda', 'Paradip'],
+      'Punjab': ['Ludhiana', 'Amritsar', 'Jalandhar', 'Patiala', 'Bathinda', 'Mohali', 'Hoshiarpur', 'Gurdaspur', 'Firozpur', 'Moga', 'Pathankot', 'Abohar', 'Phagwara'],
+      'Rajasthan': ['Jaipur', 'Jodhpur', 'Udaipur', 'Kota', 'Bikaner', 'Ajmer', 'Bhilwara', 'Alwar', 'Bharatpur', 'Sikar', 'Pali', 'Sri Ganganagar', 'Barmer', 'Chittorgarh', 'Nagaur'],
+      'Sikkim': ['Gangtok', 'Namchi', 'Gyalshing', 'Mangan'],
+      'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Tiruppur', 'Erode', 'Vellore', 'Thoothukudi', 'Dindigul', 'Thanjavur', 'Kanchipuram', 'Cuddalore', 'Hosur', 'Ambattur', 'Avadi'],
+      'Telangana': ['Hyderabad', 'Warangal', 'Nizamabad', 'Karimnagar', 'Ramagundam', 'Mahbubnagar', 'Khammam', 'Nalgonda', 'Adilabad', 'Suryapet', 'Siddipet', 'Mancherial', 'Miryalaguda'],
+      'Tripura': ['Agartala', 'Dharmanagar', 'Udaipur', 'Kailashahar', 'Belonia'],
+      'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Agra', 'Varanasi', 'Prayagraj', 'Meerut', 'Bareilly', 'Aligarh', 'Moradabad', 'Saharanpur', 'Gorakhpur', 'Ghaziabad', 'Noida', 'Mathura', 'Jhansi', 'Muzaffarnagar', 'Firozabad', 'Rampur', 'Shahjahanpur', 'Hapur', 'Raebareli', 'Faizabad', 'Mirzapur'],
+      'Uttarakhand': ['Dehradun', 'Haridwar', 'Roorkee', 'Haldwani', 'Kashipur', 'Rudrapur', 'Rishikesh', 'Nainital', 'Mussoorie', 'Kotdwar'],
+      'West Bengal': ['Kolkata', 'Asansol', 'Siliguri', 'Durgapur', 'Bardhaman', 'Malda', 'Barasat', 'Krishnanagar', 'Kharagpur', 'Haldia', 'Howrah', 'Habra', 'Cooch Behar', 'Jalpaiguri', 'Bankura'],
+      'Andaman & Nicobar': ['Port Blair', 'Diglipur', 'Car Nicobar', 'Rangat'],
+      'Chandigarh': ['Chandigarh', 'Manimajra'],
+      'D&NH and D&D': ['Daman', 'Diu', 'Silvassa', 'Dadra'],
+      'Delhi': ['New Delhi', 'Dwarka', 'Rohini', 'Pitampura', 'Janakpuri', 'Karol Bagh', 'Lajpat Nagar', 'Saket', 'Vasant Kunj', 'Greater Kailash', 'Hauz Khas', 'Mayur Vihar', 'Shahdara', 'Preet Vihar', 'Uttam Nagar', 'Paschim Vihar', 'Rajouri Garden', 'Vikaspuri', 'Narela'],
+      'J&K': ['Srinagar', 'Jammu', 'Anantnag', 'Baramulla', 'Sopore', 'Kupwara', 'Pulwama', 'Kathua', 'Udhampur', 'Rajouri'],
+      'Ladakh': ['Leh', 'Kargil', 'Diskit', 'Nubra'],
+      'Lakshadweep': ['Kavaratti', 'Agatti', 'Andrott', 'Minicoy'],
+      'Puducherry': ['Puducherry', 'Oulgaret', 'Karaikal', 'Yanam', 'Mahe']
+    };
+
+    const ENGAGE = [
+      'just getting started 👋', 'warming up 🔥', 'on a roll!', 'you\'re doing great ✨',
+      'halfway there - keep going 🚀', 'more than halfway done!', 'almost there 💪',
+      'last few questions, you\'ve got this!', 'you\'re basically NexUp now 🎉'
+    ];
+
+    const MILESTONES = { 4: '25% done! keep it up 🚀', 8: 'halfway! you\'re killing it 🔥', 11: '75% done! final stretch 💪' };
+
+    /* ─────────────────────────────────────────────────────────────
+       STEP DEFINITIONS
+    ───────────────────────────────────────────────────────────── */
+    const STEPS = [
+      { id: 'name', type: 'text', field: 'name', required: true, label: 'let\'s get started', q: 'what should we call you?', hint: 'your full name - no numbers, just your real name', placeholder: 'full name' },
+      { id: 'email', type: 'email', field: 'email', required: true, label: 'contact', q: 'your email address?', hint: 'we\'ll reach out here - use one you actually check', placeholder: 'you@example.com' },
+      { id: 'phone', type: 'tel', field: 'phone', required: true, label: 'contact', q: 'your phone number?', hint: '10-digit indian mobile number', placeholder: '+91 98765 43210' },
+      { id: 'yt_link', type: 'url', field: 'ytLink', required: false, label: 'youtube', q: 'drop your youtube channel link', placeholder: 'youtube.com/@yourchannel' },
+      { id: 'ig_link', type: 'url', field: 'igLink', required: false, allowSkip: false, label: 'instagram', q: 'drop your instagram profile link', placeholder: 'instagram.com/yourhandle' },
+      { id: 'niche', type: 'tags', field: 'niche', required: true, label: 'content niche', q: 'what kind of content do you make?', hint: 'search and select up to 5 niches, or type your own and press enter.' },
+      { id: 'state', type: 'state', field: 'state', required: true, label: 'location', q: 'which state are you based in?', hint: 'start typing to search', placeholder: 'search state...' },
+      { id: 'city', type: 'city', field: 'city', required: true, label: 'location', q: 'and which city?', placeholder: 'search city...' },
+      { id: 'q2', type: 'textarea', field: 'q2', required: true, label: 'growth mode', q: 'what are you trying to improve right now as a creator?', hint: 'no filter needed here.', placeholder: 'what\'s your current challenge...' },
+      { id: 'q4', type: 'textarea', field: 'q4', required: true, label: 'what you need', q: 'what kind of support are you expecting from NexUp?', hint: 'brand deals, collabs, mentorship - all of it?', placeholder: 'what would change the game for you...' },
+      { id: 'pitch', type: 'pitch', field: 'pitchAmount', required: true, label: 'the business end 🤝', q: 'give us an amount to pitch to brands from your side... we are yours', hint: 'per post / reel / video - your call. don\'t undersell.', placeholder: '5000' },
+      {
+        id: 'agrees', type: 'checkboxes', field: 'agreements', required: true, label: 'final check', q: 'a few things before we move forward', hint: 'all boxes must be checked',
+        checkboxes: [
+          'my content is original and authentically created by me.',
+          'i\'ll represent NexUp with integrity - no spam, no bad vibes.',
+          'i understand brand deals depend on fit and aren\'t guaranteed for every creator.',
+          'i\'ll engage genuinely with the community and support fellow creators.',
+          'i am open to feedback and iteration on my content.',
+          'i accept all the <a href="termsandconditions.html" target="_blank" rel="noopener">terms and conditions</a>.'
+        ]
+      }
+    ];
+
+    /* ─────────────────────────────────────────────────────────────
+       APP STATE
+    ───────────────────────────────────────────────────────────── */
+    const D = {};          // form data
+    let step = 0;
+    let busy = false;
+
+    /* ─────────────────────────────────────────────────────────────
+       VALIDATION
+    ───────────────────────────────────────────────────────────── */
+    function vName(v) { if (!v || v.trim().length < 2) return 'name must be at least 2 characters.'; if (/\d/.test(v)) return 'name shouldn\'t contain numbers.'; if (/[^a-zA-Z\s'\-.]/.test(v)) return 'name has invalid characters.'; return null; }
+    function vEmail(v) { if (!v) return 'email is required.'; if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'enter a valid email address.'; return null; }
+    function vPhone(v) { if (!v) return 'phone number is required.'; const d = v.replace(/[\s\-+() ]/g, ''); const c = d.startsWith('91') && d.length === 12 ? d.slice(2) : d; if (!/^[6-9]\d{9}$/.test(c)) return 'enter a valid 10-digit indian mobile number.'; return null; }
+    function cleanUrl(v) { return (v || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').split(/[?#]/)[0].replace(/\/+$/, ''); }
+    function vYouTubeProfile(v) {
+      const u = cleanUrl(v);
+      if (!u) return null;
+      if (!/^(m\.)?youtube\.com\/.+/.test(u)) return 'paste a youtube channel/profile link.';
+      if (/youtube\.com\/(watch|shorts|embed|live|playlist)\b/.test(u)) return 'please paste your youtube channel/profile link, not a video link.';
+      if (!/youtube\.com\/(@[^/]+|channel\/[^/]+|c\/[^/]+|user\/[^/]+)$/.test(u)) return 'please paste your youtube channel/profile link.';
+      return null;
+    }
+    function vInstagramProfile(v) {
+      const u = cleanUrl(v);
+      if (!u) return null;
+      if (!/^(m\.)?instagram\.com\/[^/]+/.test(u)) return 'paste an instagram profile link.';
+      if (/instagram\.com\/(p|reel|tv|stories|explore)\b/.test(u)) return 'please paste your instagram profile link, not a post or reel link.';
+      if (!/instagram\.com\/[a-z0-9._]+$/.test(u)) return 'please paste your instagram profile link.';
+      return null;
+    }
+
+    function runValidation(s, val) {
+      if (s.id === 'name') return vName(val);
+      if (s.id === 'email') return vEmail(val);
+      if (s.id === 'phone') return vPhone(val);
+      if (s.id === 'yt_link') return vYouTubeProfile(val);
+      if (s.id === 'ig_link' && !val?.trim() && !D.ytLink) return 'please add either your youtube channel link or instagram profile link.';
+      if (s.id === 'ig_link') return vInstagramProfile(val);
+      if (s.required && !val?.trim()) return 'please fill this in to continue.';
+      return null;
+    }
+
+    function showErr(m) { const e = document.getElementById('errMsg'); if (e) { e.textContent = m; e.classList.add('show') } }
+    function clearErr() { const e = document.getElementById('errMsg'); if (e) e.classList.remove('show'); document.getElementById('stepInput')?.classList.remove('err'); }
+
+    /* ─────────────────────────────────────────────────────────────
+       AUTOCOMPLETE ENGINE
+    ───────────────────────────────────────────────────────────── */
+    function highlight(t, q) {
+      if (!q) return t;
+      return t.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function buildAC(inputId, dropId, getOpts, onPick) {
+      const inp = document.getElementById(inputId);
+      const drp = document.getElementById(dropId);
+      if (!inp || !drp) return;
+      let hi = -1;
+
+      function items() { return drp.querySelectorAll('.ac-item'); }
+
+      function draw(q) {
+        const ql = q.toLowerCase();
+        const opts = getOpts();
+        const sw = opts.filter(o => o.toLowerCase().startsWith(ql));
+        const ct = opts.filter(o => !o.toLowerCase().startsWith(ql) && o.toLowerCase().includes(ql));
+        const res = [...sw, ...ct].slice(0, 9);
+        hi = -1;
+        if (!q || !res.length) {
+          drp.innerHTML = q && !res.length ? '<div class="ac-empty">no match found</div>' : '';
+          drp.classList.toggle('open', !!q && !res.length);
+          return;
+        }
+        drp.innerHTML = res.map(r => `<div class="ac-item" data-v="${r}">${highlight(r, q)}</div>`).join('');
+        drp.querySelectorAll('.ac-item').forEach(el =>
+          el.addEventListener('mousedown', e => { e.preventDefault(); pick(el.dataset.v); }));
+        drp.classList.add('open');
+      }
+
+      function pick(v) { inp.value = v; onPick(v); drp.classList.remove('open'); clearErr(); }
+
+      function moveFocus(d) {
+        const it = items(); if (!it.length) return;
+        it[hi]?.classList.remove('hi');
+        hi = Math.max(0, Math.min(it.length - 1, hi + d));
+        it[hi]?.classList.add('hi');
+        it[hi]?.scrollIntoView({ block: 'nearest' });
+      }
+
+      inp.addEventListener('input', () => draw(inp.value.trim()));
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); moveFocus(1); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); moveFocus(-1); }
+        if (e.key === 'Enter') { e.preventDefault(); const f = items()[hi]; if (f) pick(f.dataset.v); }
+        if (e.key === 'Escape') drp.classList.remove('open');
+      });
+      document.addEventListener('mousedown', e => {
+        if (!drp.contains(e.target) && e.target !== inp) drp.classList.remove('open');
+      }, { capture: true });
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NICHE LOGIC
+    ───────────────────────────────────────────────────────────── */
+    function addNiche() {
+      const inp = document.getElementById('nInp'); if (!inp) return;
+      const v = inp.value.trim().toLowerCase(); if (!v) return;
+      const sel = D.niche || [];
+      if (sel.length >= 5) { flashMax(); return; }
+      if (!sel.includes(v)) D.niche = [...sel, v];
+      inp.value = ''; filterChips(''); renderNiche(); inp.focus();
+    }
+
+    function removeNiche(t) { D.niche = (D.niche || []).filter(x => x !== t); renderNiche(); }
+
+    function toggleChip(t) {
+      const sel = D.niche || [];
+      if (sel.includes(t)) D.niche = sel.filter(x => x !== t);
+      else if (sel.length < 5) D.niche = [...sel, t];
+      else { flashMax(); return; }
+      renderNiche();
+    }
+
+    function filterChips(q) {
+      const ql = q.trim().toLowerCase();
+      const sel = D.niche || [];
+      const chips = [...document.querySelectorAll('.chip')];
+      const grid = document.getElementById('cGrid');
+      if (!ql) {
+        chips.forEach(c => { c.classList.remove('hidden'); c.classList.toggle('off', !sel.includes(c.dataset.t) && sel.length >= 5) });
+        if (grid) grid.scrollTop = 0;
+        return;
+      }
+      // sort: starts-with first, then contains, rest hidden
+      const sw = [], ct = [], no = [];
+      chips.forEach(c => { const t = c.dataset.t; if (t.startsWith(ql)) sw.push(c); else if (t.includes(ql)) ct.push(c); else no.push(c); });
+      [...sw, ...ct, ...no].forEach(c => grid.appendChild(c));
+      sw.forEach(c => { c.classList.remove('hidden'); c.classList.toggle('off', !sel.includes(c.dataset.t) && sel.length >= 5) });
+      ct.forEach(c => { c.classList.remove('hidden'); c.classList.toggle('off', !sel.includes(c.dataset.t) && sel.length >= 5) });
+      no.forEach(c => c.classList.add('hidden'));
+      if (grid) grid.scrollTop = 0;
+    }
+
+    function renderNiche() {
+      const sel = D.niche || [];
+      const sc = document.getElementById('selTags');
+      if (sc) sc.innerHTML = sel.map(t => `<span class="tag-pill"><span>${t}</span><button onclick="removeNiche('${t}')" aria-label="remove ${t}">×</button></span>`).join('');
+      const cc = document.getElementById('tagsCnt'); if (cc) cc.textContent = `${sel.length}/5 selected`;
+      document.querySelectorAll('.chip').forEach(c => { c.classList.toggle('on', sel.includes(c.dataset.t)); c.classList.toggle('off', !sel.includes(c.dataset.t) && sel.length >= 5) });
+    }
+
+    function checkAllAgreements() {
+      document.querySelectorAll('.cb-row input[type="checkbox"]').forEach(cb => { cb.checked = true; });
+      clearErr();
+    }
+
+    function flashMax() {
+      shakeCard();
+      const el = document.getElementById('maxMsg'); if (!el) return;
+      el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2200);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RENDER STEP
+    ───────────────────────────────────────────────────────────── */
+    function renderStep(idx) {
+      const s = STEPS[idx];
+      const total = STEPS.length;
+      const fname = D.name ? D.name.split(' ')[0] : '';
+
+      // update top bar
+      document.getElementById('pFill').style.width = `${(idx / total) * 100}%`;
+      document.getElementById('sBadge').textContent = `${idx + 1} / ${total}`;
+      const ei = Math.min(Math.floor((idx / total) * ENGAGE.length), ENGAGE.length - 1);
+      document.getElementById('eMsg').textContent = ENGAGE[ei];
+
+      // personalise question for email step
+      let q = s.q;
+      if (s.id === 'email' && fname) q = `nice to meet you, ${fname}! what's your email?`;
+
+      // build input HTML
+      let body = '';
+      const last = idx === total - 1;
+
+      if (['text', 'email', 'tel', 'url'].includes(s.type)) {
+        body = `<input class="f-input" id="stepInput" type="${s.type}"
+      placeholder="${s.placeholder || ''}" value="${D[s.field] || ''}"
+      autocomplete="${s.type === 'email' ? 'email' : s.type === 'tel' ? 'tel' : 'off'}"
+      inputmode="${s.type === 'tel' ? 'tel' : s.type === 'email' ? 'email' : 'text'}"
+      spellcheck="false">
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'textarea') {
+        const mx = 500, cur = D[s.field] || '';
+        body = `<textarea class="f-textarea" id="stepInput" placeholder="${s.placeholder || ''}"
+      rows="4" maxlength="${mx}">${cur}</textarea>
+      <div class="char-cc" id="charCC">${cur.length} / ${mx}</div>
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'checkboxes') {
+        const sv = D.agreements || [];
+        body = `<div class="cb-actions">
+        <button class="cb-checkall" type="button" onclick="checkAllAgreements()">check all</button>
+      </div>
+      <div class="cb-list">${s.checkboxes.map((l, i) => `
+      <label class="cb-row"><input type="checkbox" id="cb${i}" ${sv[i] ? 'checked' : ''}>
+      <span class="cb-box"></span><span class="cb-lbl">${l}</span></label>`).join('')}</div>
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'tags') {
+        const sel = D.niche || [];
+        const chips = NICHES.map(k => {
+          const on = sel.includes(k), off = !on && sel.length >= 5;
+          return `<button class="chip ${on ? 'on' : ''} ${off ? 'off' : ''}" data-t="${k}">${k}</button>`;
+        }).join('');
+        body = `<div class="niche-row ac-wrap">
+        <input class="niche-inp" id="nInp" type="text"
+          placeholder="search niche or type your own..." maxlength="40" autocomplete="off" spellcheck="false">
+        <div class="ac-drop" id="nDrop"></div>
+        <button class="niche-add" onclick="addNiche()" aria-label="add">+</button>
+      </div>
+      <div class="tags-sel" id="selTags">
+        ${sel.map(t => `<span class="tag-pill"><span>${t}</span><button onclick="removeNiche('${t}')">×</button></span>`).join('')}
+      </div>
+      <div class="niche-div">search results & picks</div>
+      <div class="chips-grid" id="cGrid">${chips}</div>
+      <div class="niche-foot">
+        <span class="tags-count" id="tagsCnt">${sel.length}/5 selected</span>
+        <span class="max-msg" id="maxMsg">max 5 reached</span>
+      </div>
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'state') {
+        body = `<div class="ac-wrap">
+        <input class="f-input" id="stepInput" type="text"
+          placeholder="${s.placeholder || 'search state...'}" value="${D.state || ''}"
+          autocomplete="off" spellcheck="false">
+        <div class="ac-drop" id="stDrop"></div>
+      </div>
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'city') {
+        const st = D.state || '';
+        body = `<div class="ac-wrap">
+        <input class="f-input" id="stepInput" type="text"
+          placeholder="search city..." value="${D.city || ''}"
+          autocomplete="off" spellcheck="false" ${!st ? 'disabled' : ''}>
+        <div class="ac-drop" id="ctDrop"></div>
+      </div>
+      ${!st ? '<p class="step-hint" style="margin-top:8px;margin-bottom:0">⚠️ please go back and select a state first</p>'
+            : `<p class="step-hint" style="margin-top:8px;margin-bottom:0">showing cities in ${st}</p>`}
+      <div class="err-msg" id="errMsg"></div>`;
+
+      } else if (s.type === 'pitch') {
+        body = `<div class="pitch-wrap">
+        <span class="pitch-pfx">₹</span>
+        <input class="f-input pitch-inp" id="stepInput" type="number"
+          min="0" step="100" placeholder="${s.placeholder || ''}" value="${D[s.field] || ''}">
+      </div>
+      <div class="err-msg" id="errMsg"></div>`;
+      }
+
+      document.getElementById('fCard').innerHTML = `
+    <div class="step-label">${s.label}</div>
+    <h2 class="step-q">${q}</h2>
+    ${s.hint && s.type !== 'city' ? `<p class="step-hint">${s.hint}</p>` : ''}
+    ${body}
+    <div class="card-actions">
+      <div class="act-left">
+        ${idx > 0 ? `<button class="btn-back" onclick="goBack()">
+          <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> back
+        </button>`: ''}
+        <button class="btn-send" id="sendBtn" onclick="goNext()">
+          <span class="btn-lbl" style="display:flex;align-items:center;gap:7px">
+            ${last ? 'submit 🚀' : 'next'}
+            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="spin"></div>
+        </button>
+        ${!s.required && s.allowSkip !== false ? `<button class="btn-skip" onclick="goSkip()">skip</button>` : ''}
+      </div>
+      ${['text', 'email', 'tel', 'url', 'textarea', 'pitch'].includes(s.type)
+          ? `<span class="enter-hint"><kbd class="kbd">↵</kbd> to continue</span>` : ''}
+    </div>`;
+
+      wireStep(s);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       WIRE STEP INTERACTIONS
+    ───────────────────────────────────────────────────────────── */
+    function wireStep(s) {
+      if (['text', 'email', 'tel', 'url', 'pitch'].includes(s.type)) {
+        const inp = document.getElementById('stepInput'); if (!inp) return;
+        setTimeout(() => inp.focus(), 80);
+        inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); goNext(); } });
+        inp.addEventListener('input', clearErr);
+      }
+
+      if (s.type === 'textarea') {
+        const inp = document.getElementById('stepInput');
+        const cc = document.getElementById('charCC');
+        if (!inp) return;
+        setTimeout(() => inp.focus(), 80);
+        inp.addEventListener('input', () => {
+          clearErr();
+          if (cc) { const l = inp.value.length; cc.textContent = `${l} / 500`; cc.classList.toggle('warn', l > 400); }
+        });
+        inp.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); goNext(); } });
+      }
+
+      if (s.type === 'tags') {
+        document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => toggleChip(c.dataset.t)));
+        const nInp = document.getElementById('nInp');
+        if (nInp) {
+          setTimeout(() => nInp.focus(), 80);
+          nInp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addNiche(); } });
+          nInp.addEventListener('input', () => filterChips(nInp.value));
+          // autocomplete from preset list
+          buildAC('nInp', 'nDrop',
+            () => NICHES.filter(k => !(D.niche || []).includes(k)),
+            v => { const sel = D.niche || []; if (sel.length >= 5) { flashMax(); return; } if (!sel.includes(v)) { D.niche = [...sel, v]; } renderNiche(); document.getElementById('nInp').value = ''; }
+          );
+        }
+      }
+
+      if (s.type === 'state') {
+        setTimeout(() => document.getElementById('stepInput')?.focus(), 80);
+        buildAC('stepInput', 'stDrop', () => STATES, v => { D.state = v; D.city = ''; });
+      }
+
+      if (s.type === 'city') {
+        if (!D.state) return;
+        setTimeout(() => document.getElementById('stepInput')?.focus(), 80);
+        buildAC('stepInput', 'ctDrop', () => CITIES[D.state] || [], v => { D.city = v; });
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       VALIDATE CURRENT STEP
+    ───────────────────────────────────────────────────────────── */
+    function validateStep() {
+      const s = STEPS[step];
+
+      if (['text', 'email', 'tel', 'url', 'pitch'].includes(s.type)) {
+        const inp = document.getElementById('stepInput');
+        const v = inp?.value?.trim() || '';
+        const e = runValidation(s, v);
+        if (e) { showErr(e); inp?.classList.add('err'); shakeCard(); return false; }
+        return true;
+      }
+      if (s.type === 'textarea') {
+        const v = document.getElementById('stepInput')?.value?.trim() || '';
+        if (v.length < 5) { showErr('please write a little more to continue.'); shakeCard(); return false; }
+        return true;
+      }
+      if (s.type === 'checkboxes') {
+        const ok = s.checkboxes.every((_, i) => document.getElementById(`cb${i}`)?.checked);
+        if (!ok) { showErr('please check every box to continue.'); shakeCard(); return false; }
+        return true;
+      }
+      if (s.type === 'tags') {
+        if (!(D.niche?.length > 0)) { showErr('add at least one niche to continue.'); shakeCard(); return false; }
+        return true;
+      }
+      if (s.type === 'state') {
+        const v = document.getElementById('stepInput')?.value?.trim() || '';
+        if (!STATES.includes(v)) { showErr('please select a state from the list.'); shakeCard(); return false; }
+        return true;
+      }
+      if (s.type === 'city') {
+        const v = document.getElementById('stepInput')?.value?.trim() || '';
+        if (!v) { showErr('please enter your city.'); shakeCard(); return false; }
+        return true;
+      }
+      return true;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       COLLECT STEP DATA
+    ───────────────────────────────────────────────────────────── */
+    function collectStep() {
+      const s = STEPS[step];
+      if (['text', 'email', 'tel', 'url', 'pitch'].includes(s.type)) {
+        const v = document.getElementById('stepInput')?.value?.trim();
+        if (s.type === 'pitch') {
+          if (v) D[s.field] = Number(v);
+        } else {
+          D[s.field] = v || '';
+        }
+      } else if (s.type === 'textarea') {
+        const v = document.getElementById('stepInput')?.value?.trim();
+        if (v) D[s.field] = v;
+      } else if (s.type === 'checkboxes') {
+        D.agreements = s.checkboxes.map((_, i) => !!document.getElementById(`cb${i}`)?.checked);
+      } else if (s.type === 'state') {
+        const v = document.getElementById('stepInput')?.value?.trim();
+        if (v) D.state = v;
+      } else if (s.type === 'city') {
+        const v = document.getElementById('stepInput')?.value?.trim();
+        if (v) D.city = v;
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────────────────────── */
+    async function goNext() {
+      if (busy) return;
+      if (!validateStep()) return;
+      collectStep();
+      if (step === STEPS.length - 1) { await submitForm(); return; }
+      spawnEnvelope();
+      transit(step + 1);
+    }
+    function goBack() { if (busy || step === 0) return; collectStep(); transit(step - 1); }
+    function goSkip() {
+      if (busy) return;
+      const s = STEPS[step];
+      if (s?.field) D[s.field] = '';
+      transit(step + 1);
+    }
+
+    function transit(next) {
+      busy = true;
+      const card = document.getElementById('fCard');
+      if (MILESTONES[next]) showToast(MILESTONES[next]);
+      card.classList.add('card-out');
+      setTimeout(() => {
+        card.classList.remove('card-out');
+        step = next;
+        renderStep(step);
+        card.classList.add('card-in');
+        card.addEventListener('animationend', () => { card.classList.remove('card-in'); busy = false; }, { once: true });
+      }, 350);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       MILESTONE TOAST
+    ───────────────────────────────────────────────────────────── */
+    function showToast(msg) {
+      const el = document.createElement('div');
+      el.className = 'toast'; el.textContent = msg;
+      document.body.appendChild(el);
+      if (msg.includes('halfway')) spawnConfetti(22);
+      setTimeout(() => el.remove(), 2500);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       CARD SHAKE
+    ───────────────────────────────────────────────────────────── */
+    function shakeCard() {
+      const c = document.getElementById('fCard');
+      let i = 0; const seq = [7, -6, 5, -4, 0];
+      const t = () => { if (i >= seq.length) { c.style.transform = ''; return; } c.style.transform = `translateX(${seq[i++]}px)`; setTimeout(t, 55); };
+      t();
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       ENVELOPE PARTICLE
+    ───────────────────────────────────────────────────────────── */
+    function spawnEnvelope() {
+      const btn = document.getElementById('sendBtn');
+      const r = btn?.getBoundingClientRect() || { left: innerWidth / 2, top: innerHeight / 2, width: 0, height: 0 };
+      const el = document.createElement('div');
+      el.className = 'env'; el.textContent = '✉️';
+      el.style.setProperty('--x', `${Math.round(r.left + r.width / 2)}px`);
+      el.style.setProperty('--y', `${Math.round(r.top + r.height / 2)}px`);
+      el.style.left = '0'; el.style.top = '0';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1100);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FIREBASE SUBMIT + WHATSAPP REDIRECT
+    ───────────────────────────────────────────────────────────── */
+    async function submitForm() {
+      const btn = document.getElementById('sendBtn');
+      btn.classList.add('loading'); btn.disabled = true;
+      try {
+        await db.collection('creator_applications').add({
+          ...D,
+          submittedAt: firebase.firestore.FieldValue.serverTimestamp(),
+          source: 'creator-form-v3'
+        });
+        showSuccess();
+      } catch (e) {
+        console.error('Firebase error:', e);
+        btn.classList.remove('loading'); btn.disabled = false;
+        showErr('something went wrong. please check your firebase config and try again.');
+      }
+    }
+
+    function showSuccess() {
+      document.getElementById('cardWrap').style.display = 'none';
+      document.getElementById('pFill').style.width = '100%';
+      document.getElementById('sBadge').textContent = 'done ✓';
+      document.getElementById('eMsg').textContent = 'you made it! 🎉';
+      document.getElementById('successScreen').classList.add('show');
+      spawnConfetti(60);
+
+      let n = 5;
+      const el = document.getElementById('rCount');
+      const iv = setInterval(() => {
+        n--; if (el) el.textContent = n;
+        if (n <= 0) { clearInterval(iv); window.location.href = WHATSAPP_LINK; }
+      }, 1000);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       CONFETTI
+    ───────────────────────────────────────────────────────────── */
+    function spawnConfetti(n = 40) {
+      const cols = ['#A8E63D', '#C5F26A', '#3B6D11', '#111111', '#EAF3DE'];
+      if (!document.getElementById('cfSt')) {
+        const s = document.createElement('style'); s.id = 'cfSt';
+        s.textContent = '@keyframes cfF{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(50vh) rotate(720deg)}}';
+        document.head.appendChild(s);
+      }
+      for (let i = 0; i < n; i++) {
+        const el = document.createElement('div');
+        const sz = Math.random() * 9 + 5;
+        el.style.cssText = `position:fixed;top:${Math.random() * 45 + 15}%;left:${Math.random() * 100}%;
+      width:${sz}px;height:${sz}px;background:${cols[~~(Math.random() * cols.length)]};
+      border-radius:${Math.random() > .5 ? '50%' : '3px'};pointer-events:none;z-index:9999;
+      animation:cfF ${Math.random() * .9 + .5}s ease-in ${Math.random() * .4}s forwards`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1600);
+      }
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       INIT
+    ───────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderStep(0);
+      const c = document.getElementById('fCard');
+      c.style.opacity = '0'; c.style.transform = 'translateY(30px) scale(.97)';
+      requestAnimationFrame(() => {
+        c.style.transition = 'transform .6s var(--spring),opacity .45s ease';
+        c.style.opacity = '1'; c.style.transform = 'translateY(0) scale(1)';
+        setTimeout(() => { c.style.transition = ''; c.style.transform = ''; }, 680);
+      });
+    });
+  </script>
+</body>
+
+</html>

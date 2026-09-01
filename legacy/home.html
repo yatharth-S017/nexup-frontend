@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexUp - one stop solution for creators</title>
+  <link rel="icon" type="image/png" href="./Public/photos/logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Style/main.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E8CLQ8Q6PE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E8CLQ8Q6PE');
+  </script>
+</head>
+
+<script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.1,
+    smoothWheel: true,
+    touchMultiplier: 1,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>
+
+<body>
+  <nav class="hero-nav">
+    <a href="#home" class="nav-logo">Nex<em>Up</em></a>
+    <div class="nav-links">
+      <a href="#problem">the problem</a>
+      <a href="#solve">what we do</a>
+      <a href="#how">how it works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/login" class="btn btn-lime btn-sm">login <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="nav-menu-btn" type="button" aria-label="open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu-backdrop" data-menu-close></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#problem">the problem</a>
+    <a href="#solve">what we do</a>
+    <a href="#how">how it works</a>
+    <a href="form.html" target="_blank" rel="noopener" class="mobile-cta mobile-creator">i'm a creator</a>
+    <a href="brand.html" target="_blank" rel="noopener" class="mobile-cta mobile-brand">i'm a brand</a>
+  </div>
+  <section class="hero" id="home">
+    <div class="hero-mesh">
+      <div class="mesh-orb mo1"></div>
+      <div class="mesh-orb mo2"></div>
+      <div class="mesh-orb mo3"></div>
+    </div>
+    <div class="hero-inner hero-redesign">
+      <div class="hero-left">
+        <div class="hero-eyebrow"><span class="badge-dot"></span>building India's biggest creator community</div>
+        <h1 class="hero-h1">be one of
+          <br>the <span class="italic-word">first 500</span>
+        </h1>
+        <p class="hero-sub">we're building a free community where every student creator in India can land brand deals,
+          learn, and grow - together. get in early. help shape it.</p>
+        <div class="hero-ctas">
+          <a href="form.html" class="btn btn-lime btn-lg">i'm a creator <svg width="14" height="14" fill="none"
+              viewBox="0 0 16 16">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></a>
+          <a href="brand.html" class="btn btn-ink btn-lg">i'm a brand <svg width="14" height="14" fill="none"
+              viewBox="0 0 16 16">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="m-item"><span class="m-dot"></span>brand deals</div>
+      <div class="m-item"><span class="m-dot"></span>creator collabs</div>
+      <div class="m-item"><span class="m-dot"></span>get matched with brands</div>
+      <div class="m-item"><span class="m-dot"></span>grow your audience</div>
+      <div class="m-item"><span class="m-dot"></span>real opportunities</div>
+      <div class="m-item"><span class="m-dot"></span>zero gatekeeping</div>
+      <div class="m-item"><span class="m-dot"></span>community-first</div>
+      <div class="m-item"><span class="m-dot"></span>whatsapp group access</div>
+      <div class="m-item"><span class="m-dot"></span>brand deals</div>
+      <div class="m-item"><span class="m-dot"></span>creator collabs</div>
+      <div class="m-item"><span class="m-dot"></span>get matched with brands</div>
+      <div class="m-item"><span class="m-dot"></span>grow your audience</div>
+      <div class="m-item"><span class="m-dot"></span>real opportunities</div>
+      <div class="m-item"><span class="m-dot"></span>zero gatekeeping</div>
+      <div class="m-item"><span class="m-dot"></span>community-first</div>
+      <div class="m-item"><span class="m-dot"></span>whatsapp group access</div>
+    </div>
+  </div>
+  <section class="problem-section" id="problem">
+    <div class="si">
+      <div class="problem-header reveal">
+        <div class="s-eye">the hard truth</div>
+        <h2 class="s-ttl">making it as a creator<br>is <span class="serif">genuinely hard</span></h2>
+        <p class="s-sub">you create. you post. you refresh. and nothing happens. sound familiar?</p>
+      </div>
+      <div class="truth-grid">
+        <article class="truth-card">
+          <div class="truth-visual">
+            <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="160" cy="160" rx="120" ry="50" fill="rgba(168,230,61,.04)" />
+              <rect x="120" y="30" width="80" height="130" rx="10" fill="#1a1a2e" stroke="rgba(255,255,255,.1)"
+                stroke-width="1" />
+              <rect x="126" y="40" width="68" height="100" rx="6" fill="#0d0d1a" />
+              <rect x="128" y="42" width="64" height="48" rx="3" fill="rgba(168,230,61,.07)" />
+              <circle cx="135" cy="48" r="4" fill="rgba(255,255,255,.15)" />
+              <rect x="143" y="46" width="28" height="2" rx="1" fill="rgba(255,255,255,.2)" />
+              <rect x="143" y="50" width="20" height="1.5" rx="1" fill="rgba(255,255,255,.1)" />
+              <rect x="128" y="54" width="64" height="34" rx="2" fill="rgba(255,255,255,.03)"
+                stroke="rgba(255,255,255,.06)" stroke-width=".5" />
+              <text x="160" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="18"
+                fill="rgba(255,255,255,.15)">📸</text>
+              <text x="132" y="102" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,255,255,.4)">♡ 3
+                likes</text>
+              <rect x="128" y="106" width="40" height="1.5" rx="1" fill="rgba(255,255,255,.08)" />
+              <rect x="128" y="110" width="30" height="1.5" rx="1" fill="rgba(255,255,255,.06)" />
+              <rect x="126" y="128" width="68" height="8" rx="3" fill="rgba(255,255,255,.04)" />
+              <ellipse cx="160" cy="192" rx="28" ry="6" fill="rgba(0,0,0,.4)" />
+              <path d="M148 180 Q155 172 160 165 Q165 172 172 180" stroke="rgba(255,255,255,.18)" stroke-width="2"
+                stroke-linecap="round" fill="none" />
+              <circle cx="160" cy="162" r="8" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.08)"
+                stroke-width="1" />
+              <circle cx="157" cy="161" r="1" fill="rgba(255,255,255,.4)" />
+              <circle cx="163" cy="161" r="1" fill="rgba(255,255,255,.4)" />
+              <path d="M156 165 Q160 163 164 165" stroke="rgba(255,255,255,.25)" stroke-width=".8" fill="none"
+                stroke-linecap="round" />
+              <circle cx="188" cy="55" r="9" fill="rgba(168,230,61,.15)" stroke="rgba(168,230,61,.3)"
+                stroke-width="1" />
+              <text x="188" y="58.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8"
+                font-weight="600" fill="rgba(168,230,61,.8)">3</text>
+            </svg>
+          </div>
+          <div class="truth-emotion">relatable?</div>
+          <div class="truth-body">
+            <div class="truth-label">the grind</div>
+            <div class="truth-title">you post. nobody sees it.</div>
+            <div class="truth-copy">hours on a reel, perfect caption, 11pm posting time - 3 likes. two from family.
+            </div>
+          </div>
+          <div class="truth-overlay">
+            <div class="struggle-overlay-emoji">😶</div>
+            <div class="struggle-overlay-text">"i spent 6 hours editing that reel. got 3 likes. one was my mom and one
+              was mine by accident."</div>
+          </div>
+        </article>
+        <article class="truth-card">
+          <div class="truth-visual">
+            <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="160" cy="160" rx="120" ry="50" fill="rgba(168,230,61,.03)" />
+              <rect x="60" y="25" width="200" height="140" rx="12" fill="rgba(255,255,255,.04)"
+                stroke="rgba(255,255,255,.07)" stroke-width="1" />
+              <rect x="68" y="33" width="100" height="12" rx="4" fill="rgba(255,255,255,.06)" />
+              <rect x="68" y="33" width="55" height="12" rx="4" fill="rgba(255,255,255,.1)" />
+              <text x="96" y="42.5" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7"
+                fill="rgba(255,255,255,.35)">Inbox (0 replies)</text>
+              <rect x="68" y="52" width="184" height="22" rx="6" fill="rgba(255,100,100,.08)"
+                stroke="rgba(255,100,100,.15)" stroke-width=".5" />
+              <text x="80" y="64" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,120,120,.7)">Brand A:
+                "not the right fit..."</text>
+              <rect x="68" y="80" width="184" height="22" rx="6" fill="rgba(255,100,100,.08)"
+                stroke="rgba(255,100,100,.15)" stroke-width=".5" />
+              <text x="80" y="92" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,120,120,.7)">Brand B:
+                "we're pausing collabs"</text>
+              <rect x="68" y="108" width="184" height="22" rx="6" fill="rgba(255,100,100,.08)"
+                stroke="rgba(255,100,100,.15)" stroke-width=".5" />
+              <text x="80" y="120" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,120,120,.7)">Brand C:
+                "maybe next quarter"</text>
+              <rect x="68" y="136" width="184" height="18" rx="6" fill="rgba(255,100,100,.06)"
+                stroke="rgba(255,100,100,.1)" stroke-width=".5" />
+              <text x="80" y="148" font-family="DM Sans,sans-serif" font-size="7" fill="rgba(255,100,100,.5)">Brand D:
+                (seen, no reply)</text>
+              <text x="242" y="65" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,100,100,.5)">✕</text>
+              <text x="242" y="93" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,100,100,.5)">✕</text>
+              <text x="242" y="121" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(255,100,100,.5)">✕</text>
+            </svg>
+          </div>
+          <div class="truth-emotion">the rejection loop</div>
+          <div class="truth-body">
+            <div class="truth-label">the gatekeeping</div>
+            <div class="truth-title">"maybe next quarter."</div>
+            <div class="truth-copy">you pitch brands. they ghost or pass without clear feedback. the bar keeps moving.
+            </div>
+          </div>
+          <div class="truth-overlay">
+            <div class="struggle-overlay-emoji">🥲</div>
+            <div class="struggle-overlay-text">"i sent 40 cold DMs. got 2 replies. both said 'not right now'. i was
+              ready. they just didn't care."</div>
+          </div>
+        </article>
+        <article class="truth-card">
+          <div class="truth-visual">
+            <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="160" cy="170" rx="110" ry="40" fill="rgba(168,230,61,.03)" />
+              <rect x="70" y="148" width="180" height="6" rx="3" fill="rgba(255,255,255,.08)" />
+              <rect x="110" y="108" width="100" height="38" rx="5" fill="rgba(255,255,255,.06)"
+                stroke="rgba(255,255,255,.08)" stroke-width="1" />
+              <rect x="116" y="113" width="88" height="28" rx="3" fill="rgba(0,0,0,.4)" />
+              <rect x="118" y="115" width="40" height="3" rx="1" fill="rgba(255,255,255,.08)" />
+              <polyline points="118,138 130,137 142,138 154,137 165,138 178,137 190,138 202,137"
+                stroke="rgba(168,230,61,.2)" stroke-width="1" fill="none" />
+              <circle cx="160" cy="98" r="10" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.08)"
+                stroke-width="1" />
+              <circle cx="156.5" cy="96" r="1.2" fill="rgba(255,255,255,.35)" />
+              <circle cx="163.5" cy="96" r="1.2" fill="rgba(255,255,255,.35)" />
+              <path d="M156 101 Q160 99 164 101" stroke="rgba(255,255,255,.2)" stroke-width=".8" fill="none"
+                stroke-linecap="round" />
+              <path d="M152 148 Q154 132 156 122 Q160 118 164 122 Q166 132 168 148" stroke="rgba(255,255,255,.1)"
+                stroke-width="2" stroke-linecap="round" fill="none" />
+              <path d="M152 135 L132 140" stroke="rgba(255,255,255,.1)" stroke-width="2" stroke-linecap="round" />
+              <path d="M168 135 L188 140" stroke="rgba(255,255,255,.1)" stroke-width="2" stroke-linecap="round" />
+              <text x="98" y="68" font-family="DM Sans,sans-serif" font-size="14" fill="rgba(255,255,255,.08)">?</text>
+              <text x="205" y="75" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.06)">?</text>
+              <text x="195" y="55" font-family="DM Sans,sans-serif" font-size="18" fill="rgba(255,255,255,.05)">?</text>
+              <circle cx="80" cy="70" r="12" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"
+                stroke-dasharray="3 3" />
+              <circle cx="80" cy="70" r="6" fill="rgba(255,255,255,.04)" />
+              <circle cx="240" cy="65" r="10" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"
+                stroke-dasharray="3 3" />
+              <circle cx="240" cy="65" r="5" fill="rgba(255,255,255,.04)" />
+            </svg>
+          </div>
+          <div class="truth-emotion">you're not alone</div>
+          <div class="truth-body">
+            <div class="truth-label">the isolation</div>
+            <div class="truth-title">figuring it out alone, at 2am.</div>
+            <div class="truth-copy">no one to ask. no feedback. no collab partners. just you, your notes app, and
+              hope.</div>
+          </div>
+          <div class="truth-overlay">
+            <div class="struggle-overlay-emoji">😮‍💨</div>
+            <div class="struggle-overlay-text">"i've been creating for a year and still don't know if i'm doing it
+              right. i just needed someone who actually gets it."</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="exaggerate-section" id="exaggerate">
+    <div class="ex-inner">
+      <div class="ex-statement">
+        <span class="ex-line">you&rsquo;re not the <span class="hl">problem</span> &mdash;</span>
+        <span class="ex-line">you&rsquo;re just stuck in a system that <span class="serif">ignores you</span>.</span>
+        <span class="ex-gap"></span>
+        <span class="ex-line">but your content is <span class="hl">good</span>.</span>
+        <span class="ex-line">you just need <span class="serif">access</span>.</span>
+        <span class="ex-gap"></span>
+        <span class="ex-line"><span class="hl">NexUp</span> gives you that.</span>
+      </div>
+    </div>
+  </section>
+  <section class="solve-section reveal" id="solve">
+    <div class="si">
+      <div class="solve-intro">
+        <div>
+          <div class="s-eye">how we fix it</div>
+          <h2 class="s-ttl">NexUp is the <span class="serif">unfair advantage</span><br>you've been missing</h2>
+          <p class="s-sub" style="margin-bottom:0">we take the rejection, the guesswork, and the loneliness out of being
+            a creator - and replace it with real connections, real deals, and a community that moves with you.</p>
+        </div>
+      </div>
+      <div class="solution-grid">
+        <article class="solution-card">
+          <span class="solution-icon" aria-hidden="true">🤝</span>
+          <div class="solve-num">01</div>
+          <div class="solve-ttl">land real brand deals</div>
+          <div class="solve-bdy">we match you with brands that actually want to work with creators at your stage. no
+            cold DMs, no endless pitching.</div>
+        </article>
+        <article class="solution-card">
+          <span class="solution-icon" aria-hidden="true">♣</span>
+          <div class="solve-num">02</div>
+          <div class="solve-ttl">collab with creators who get it</div>
+          <div class="solve-bdy">find your people. co-create content, grow each other's audiences, and finally have a
+            community that actually helps you move forward.</div>
+        </article>
+        <article class="solution-card">
+          <span class="solution-icon" aria-hidden="true">✓</span>
+          <div class="solve-num">03</div>
+          <div class="solve-ttl">zero gatekeeping, zero bullshit</div>
+          <div class="solve-bdy">no application review. no vague hoops. if you create, you belong here. period.</div>
+        </article>
+        <article class="solution-card">
+          <span class="solution-icon" aria-hidden="true">◆</span>
+          <div class="solve-num">04</div>
+          <div class="solve-ttl">workshops from people who've done it</div>
+          <div class="solve-bdy">hands-on sessions on content strategy, growth, brand deals - from creators who've been
+            exactly where you are.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="how-section" id="how">
+    <div class="si">
+      <div class="s-eye">how it works</div>
+      <h2 class="s-ttl">three steps.<br><span class="serif">that's all.</span></h2>
+      <div class="journey-grid">
+        <article class="journey-card">
+          <span class="journey-icon" aria-hidden="true">✎</span>
+          <div class="step-arrow">→</div>
+          <div class="step-num">1</div>
+          <div class="step-ttl">fill the form</div>
+          <div class="step-bdy">quick 2-min onboarding. tell us what you create, your platform, and what you're looking
+            for.</div>
+        </article>
+        <article class="journey-card">
+          <span class="journey-icon" aria-hidden="true">◔</span>
+          <div class="step-arrow">→</div>
+          <div class="step-num">2</div>
+          <div class="step-ttl">join the whatsapp group</div>
+          <div class="step-bdy">after filling the form, you get redirected straight to our whatsapp group - where brand
+            opps, collabs, and drops happen.</div>
+        </article>
+        <article class="journey-card">
+          <span class="journey-icon" aria-hidden="true">◉</span>
+          <div class="step-num">3</div>
+          <div class="step-ttl">get matched &amp; create</div>
+          <div class="step-bdy">we handle brand intros. you focus on making content. your first deal might land faster
+            than you think.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="dark-section">
+    <div class="dark-inner">
+      <div>
+        <div class="s-eye" style="color:rgba(168,230,61,.75)">why now</div>
+        <div class="dark-s-ttl">we're building this <span class="serif">with</span> creators,<br>not for them.</div>
+        <p class="dark-s-sub">no inflated numbers. no fake stats. we're early - and that means you get to help shape
+          what NexUp becomes.</p>
+      </div>
+      <div class="feature-pills">
+        <div class="fpill">
+          <div class="fpill-icon"><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="5.5" stroke="#A8E63D" stroke-width="1.4" />
+              <path d="M4.5 7l1.8 1.8L9.5 5" stroke="#A8E63D" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></div>free for creators - right now
+        </div>
+        <div class="fpill">
+          <div class="fpill-icon"><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="5.5" stroke="#A8E63D" stroke-width="1.4" />
+              <path d="M4.5 7l1.8 1.8L9.5 5" stroke="#A8E63D" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></div>real brand deals, not just "exposure"
+        </div>
+        <div class="fpill">
+          <div class="fpill-icon"><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="5.5" stroke="#A8E63D" stroke-width="1.4" />
+              <path d="M4.5 7l1.8 1.8L9.5 5" stroke="#A8E63D" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></div>whatsapp-first, low friction community
+        </div>
+        <div class="fpill">
+          <div class="fpill-icon"><svg width="14" height="14" fill="none" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="5.5" stroke="#A8E63D" stroke-width="1.4" />
+              <path d="M4.5 7l1.8 1.8L9.5 5" stroke="#A8E63D" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></div>you help shape what we become next
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section reveal" id="join">
+    <div class="cta-bg-orb1"></div>
+    <div class="cta-bg-orb2"></div>
+    <div class="si">
+      <div class="cta-box">
+        <div class="cta-badge">pick your path</div>
+        <h2 class="cta-ttl">your creator journey<br><span class="serif">starts here</span></h2>
+        <p class="cta-sub">one quick form. join the whatsapp group. get matched with brands and creators that actually
+          make sense for you.</p>
+        <div class="cta-btns">
+          <a href="form.html" target="_blank" class="btn btn-lime btn-lg">i'm a creator <svg width="14" height="14"
+              fill="none" viewBox="0 0 16 16">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></a>
+          <a href="brand.html" target="_blank" class="btn btn-ink btn-lg">i'm a brand <svg width="14" height="14"
+              fill="none" viewBox="0 0 16 16">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg></a>
+        </div>
+        <p class="cta-note">no spam. no hidden fees. just real opportunities.</p>
+      </div>
+    </div>
+  </section>
+  <section class="creators-strip" aria-label="founders">
+    <div class="creators-label">founders</div>
+    <div class="creators-photos">
+      <div class="creator-card">
+        <img src="Public/photos/Nimish Agrawal.png" alt="Nimish Agrawal">
+        <div class="creator-socials">
+          <a href="https://www.instagram.com/agrawalnimish1405/" target="_blank" rel="noopener"
+            aria-label="instagram"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.2" cy="6.8" r="1" />
+            </svg></a>
+          <a href="https://www.linkedin.com/in/nimishagrawal1405/" target="_blank" rel="noopener"
+            aria-label="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 10v8" />
+              <path d="M10.5 18v-8" />
+              <path d="M10.5 13.5c0-2.2 1.3-3.7 3.4-3.7 2 0 3.1 1.3 3.1 3.6V18" />
+              <circle cx="6.5" cy="6.5" r="1.2" />
+            </svg></a>
+        </div>
+      </div>
+      <div class="creator-card">
+        <img src="Public/photos/Adarsh.png" alt="NexUp creator">
+        <div class="creator-socials">
+          <a href="https://www.instagram.com/chomu_somehow?utm_source=qr" target="_blank" rel="noopener"
+            aria-label="instagram"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.2" cy="6.8" r="1" />
+            </svg></a>
+          <a href="https://www.linkedin.com/in/adarsh-rai-631078322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            target="_blank" rel="noopener" aria-label="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 10v8" />
+              <path d="M10.5 18v-8" />
+              <path d="M10.5 13.5c0-2.2 1.3-3.7 3.4-3.7 2 0 3.1 1.3 3.1 3.6V18" />
+              <circle cx="6.5" cy="6.5" r="1.2" />
+            </svg></a>
+        </div>
+      </div>
+      <div class="creator-card">
+        <img src="Public/photos/Krishna.png" alt="NexUp creator">
+        <div class="creator-socials">
+          <a href="https://www.instagram.com/krionstage/" target="_blank" rel="noopener" aria-label="instagram"><svg
+              viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.2" cy="6.8" r="1" />
+            </svg></a>
+          <a href="https://www.linkedin.com/in/kricodes/" target="_blank" rel="noopener" aria-label="linkedin"><svg
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 10v8" />
+              <path d="M10.5 18v-8" />
+              <path d="M10.5 13.5c0-2.2 1.3-3.7 3.4-3.7 2 0 3.1 1.3 3.1 3.6V18" />
+              <circle cx="6.5" cy="6.5" r="1.2" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Nex<em>Up</em></div>
+    <div class="footer-links">
+      <a href="#">terms and conditions</a><a href="#">contact</a><a href="https://www.instagram.com/pipeup.in"
+        target="_blank" rel="noopener">instagram</a><a href="https://www.linkedin.com/company/pipeup-in" target="_blank"
+        rel="noopener">linkedin</a>
+    </div>
+    <div class="footer-copy">© 2026 NexUp</div>
+  </footer>
+  <script>
+    const menuBtn = document.querySelector('.nav-menu-btn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu() {
+      document.body.classList.remove('menu-open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    }
+    menuBtn?.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    document.querySelector('[data-menu-close]')?.addEventListener('click', closeMobileMenu);
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1040) closeMobileMenu();
+    });
+
+    const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    const exSec = document.querySelector('#exaggerate');
+    const exLines = [...document.querySelectorAll('#exaggerate .ex-line')];
+    function updateExReveal() {
+      if (!exSec || !exLines.length) return;
+      const rect = exSec.getBoundingClientRect();
+      const range = window.innerHeight + rect.height;
+      const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / range));
+      const litCount = Math.ceil(progress * (exLines.length + 1));
+      exLines.forEach((line, i) => line.classList.toggle('lit', i < litCount));
+    }
+    updateExReveal();
+    document.addEventListener('scroll', updateExReveal, { passive: true });
+    window.addEventListener('resize', updateExReveal);
+  </script>
+</body>
+
+</html>
