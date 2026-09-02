@@ -8,7 +8,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const isHome = location.pathname === '/' || location.pathname === '/index.html';
-  const usesLandingHeader = isHome || location.pathname === ROUTES.LOGIN || location.pathname === ROUTES.FORGOT_PASSWORD;
+  const usesLandingHeader = isHome || location.pathname === ROUTES.LOGIN || location.pathname === ROUTES.FORGOT_PASSWORD || location.pathname === ROUTES.REGISTER;
 
   return (
     <nav className={usesLandingHeader ? 'home-navbar' : undefined}>
