@@ -1,0 +1,37 @@
+.brand-workspace .brand-onboarding-stage {
+  background: radial-gradient(circle at 82% 10%, rgba(185, 235, 69, .11), transparent 28%), #06090a;
+}
+
+.brand-workspace .brand-onboarding-card {
+  background: rgba(17, 22, 21, .9);
+  border: 1px solid rgba(202, 225, 150, .2);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .32), 0 0 34px rgba(185, 235, 69, .05);
+  color: #f7f8f5;
+}
+
+.brand-workspace .brand-onboarding-card::before { background: #b9eb45; }
+.brand-workspace .brand-onboarding-card h2 { color: #f7f8f5 !important; }
+.brand-workspace .brand-onboarding-card p,
+.brand-workspace .brand-onboarding-card .form-label { color: #aab2af; }
+.brand-workspace .brand-onboarding-card .form-label { font-weight: 600; }
+.brand-workspace .brand-onboarding-card .f-input,
+.brand-workspace .brand-onboarding-card .f-select,
+.brand-workspace .brand-onboarding-card .f-textarea {
+  background: rgba(0, 0, 0, .2);
+  border-color: rgba(202, 225, 150, .2);
+  color: #f7f8f5;
+}
+.brand-workspace .brand-onboarding-card .f-input::placeholder,
+.brand-workspace .brand-onboarding-card .f-textarea::placeholder { color: #718078; }
+.brand-workspace .brand-onboarding-card .f-input:focus,
+.brand-workspace .brand-onboarding-card .f-select:focus,
+.brand-workspace .brand-onboarding-card .f-textarea:focus {
+  border-color: #b9eb45;
+  box-shadow: 0 0 0 3px rgba(185, 235, 69, .12);
+}
+.brand-workspace .brand-onboarding-card .f-select option { background: #111615; color: #f7f8f5; }
+.brand-workspace .brand-onboarding-card .btn-send {
+  background: #b9eb45;
+  color: #0a0e0a;
+  box-shadow: 0 6px 16px rgba(185, 235, 69, .15);
+}

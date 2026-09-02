@@ -4,6 +4,16 @@ import useAuth from '../hooks/useAuth.js';
 import { brandService } from '../services/brandService.js';
 import { isProfileMissing } from '../utils/helpers.js';
 
+const isBrandProfileComplete = (profile) => [
+  profile?.companyName,
+  profile?.website,
+  profile?.industry,
+  profile?.companySize,
+  profile?.city,
+  profile?.state,
+  profile?.description,
+].every((value) => String(value || '').trim());
+
 export default function BrandGuard() {
   const { brandProfile, updateBrandProfile } = useAuth();
   const [checking, setChecking] = useState(!brandProfile);
@@ -11,6 +21,7 @@ export default function BrandGuard() {
 
   useEffect(() => {
     if (brandProfile) {
+      setError(!isBrandProfileComplete(brandProfile));
       setChecking(false);
       return;
     }
@@ -19,6 +30,7 @@ export default function BrandGuard() {
       try {
         const profile = await brandService.getBrandProfile();
         updateBrandProfile(profile);
+        setError(!isBrandProfileComplete(profile));
       } catch (err) {
         console.error('Brand profile check error:', err);
         if (isProfileMissing(err)) {

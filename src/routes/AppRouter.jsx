@@ -70,20 +70,20 @@ export default function AppRouter() {
         <Route element={<ProtectedRoute allowedAccountType="BRAND" />}>
           <Route element={<BrandLayout />}>
             <Route path="/brand/profile/create" element={<BrandOnboarding />} />
+            <Route path={ROUTES.BRAND} element={<BrandDashboard />} />
+            <Route path={ROUTES.BRAND_HOME} element={<BrandDashboard />} />
             <Route element={<BrandGuard />}>
-              <Route path={ROUTES.BRAND} element={<BrandDashboard />} />
-              <Route path={ROUTES.BRAND_HOME} element={<BrandDashboard />} />
               <Route path="/brand/profile" element={<BrandDashboard />} />
-              <Route path="/brand/security" element={<BrandDashboard />} />
-              <Route path="/brand/discover-creators" element={<BrandDashboard />} />
-              <Route path="/brand/campaigns" element={<BrandDashboard />} />
-              <Route path="/brand/campaigns/create" element={<BrandDashboard />} />
-              <Route path="/brand/campaigns/new" element={<BrandDashboard />} />
-              <Route path="/brand/campaigns/:campaignId/applications" element={<BrandCampaignApplicantsPage />} />
-              <Route path="/brand/creators/:creatorId/analytics" element={<BrandCreatorAnalyticsPage />} />
-              <Route path="/brand/campaigns/:campaignId" element={<BrandDashboard />} />
-              <Route path="/brand/campaigns/:campaignId/edit" element={<BrandDashboard />} />
             </Route>
+            <Route path="/brand/security" element={<BrandDashboard />} />
+            <Route path="/brand/discover-creators" element={<BrandDashboard />} />
+            <Route path="/brand/campaigns" element={<BrandDashboard />} />
+            <Route path="/brand/campaigns/create" element={<BrandDashboard />} />
+            <Route path="/brand/campaigns/new" element={<BrandDashboard />} />
+            <Route path="/brand/campaigns/:campaignId/applications" element={<BrandCampaignApplicantsPage />} />
+            <Route path="/brand/creators/:creatorId/analytics" element={<BrandCreatorAnalyticsPage />} />
+            <Route path="/brand/campaigns/:campaignId" element={<BrandDashboard />} />
+            <Route path="/brand/campaigns/:campaignId/edit" element={<BrandDashboard />} />
           </Route>
         </Route>
 

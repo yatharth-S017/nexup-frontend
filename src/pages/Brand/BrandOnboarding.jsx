@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth.js';
 import { brandService } from '../../services/brandService.js';
 import { NotificationContext } from '../../context/NotificationContext.jsx';
+import './BrandOnboarding.css';
 
 const INDUSTRIES = [
   { value: 'TECHNOLOGY', label: 'Technology' },
@@ -89,7 +90,7 @@ export default function BrandOnboarding() {
   };
 
   return (
-    <div className="stage" style={{ minHeight: 'calc(100vh - 64px)', justifyContent: 'flex-start', padding: '40px 16px' }}>
+    <div className="stage brand-onboarding-stage" style={{ minHeight: 'calc(100vh - 64px)', justifyContent: 'flex-start', padding: '40px 16px' }}>
       {/* Background Blobs */}
       <div className="bg-wrap">
         <div className="bg-blob bb1"></div>
@@ -98,7 +99,7 @@ export default function BrandOnboarding() {
       </div>
 
       <div className="card-wrap" style={{ width: '100%', maxWidth: '600px', zIndex: 2 }}>
-        <div className="form-card" style={{ animation: 'cIn .45s var(--spring) both' }}>
+        <div className="form-card brand-onboarding-card" style={{ animation: 'cIn .45s var(--spring) both' }}>
           <div style={{ textAlign: 'center', marginBottom: '28px' }}>
             <span className="cta-badge" style={{ marginBottom: '8px' }}>onboarding</span>
             <h2 style={{ fontSize: '26px', fontWeight: 500, color: 'var(--ink)' }}>Complete Brand Profile</h2>
